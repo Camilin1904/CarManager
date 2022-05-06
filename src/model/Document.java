@@ -1,16 +1,35 @@
 package model;
 
+/**
+ * The Documnets of the vehicle
+ */
 public abstract class Document {
 
+	/**
+	 * The cost of the document
+	 */
 	private double cost;
+	/**
+	 * The year in which it was created
+	 */
 	private int year;
+	/**
+	 * The image from which the id will be decoded
+	 */
 	protected int[][] image;
+	/**
+	 * teh dimensions of teh square shape image
+	 */
 	protected final int IMAGE_SIZE = 5;
 
+	/**
+	 * Method in charge of decoding tha id from the image
+	 * @return Id
+	 */
 	public abstract String DecodeImage();
 
 	/**
-	 * 
+	 * Builder
 	 * @param cost
 	 * @param year
 	 * @param image
@@ -26,6 +45,10 @@ public abstract class Document {
 		}
 	}
 
+	/**
+	 * Fetches the year of production
+	 * @return
+	 */
 	public int getYear() {
 		return year;
 	}

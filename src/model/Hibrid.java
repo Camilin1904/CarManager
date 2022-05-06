@@ -1,14 +1,29 @@
 package model;
 
+/**
+ * The hibrid car
+ */
 public class Hibrid extends Car implements BatteryBearer, MotorBearer {
 
+	/**
+	 * The type of fuel the Car uses in its motor
+	 */
 	private FuelType fuelType;
+	/**
+	 * The capacity of the fuel tank of the Car
+	 */
 	private double tankCapacity;
+	/**
+	 * Whether or not the car has a fast charger
+	 */
 	private boolean hasFastCharger;
+	/**
+	 * The duration of the battery
+	 */
 	private double batteryDuration;
 
 	/**
-	 * 
+	 * Builder
 	 * @param basePrice
 	 * @param brand
 	 * @param model
@@ -31,16 +46,26 @@ public class Hibrid extends Car implements BatteryBearer, MotorBearer {
 		this.batteryDuration = batteryDuration;
 	}
 
+	/**
+	 * Calculates the sale price taking into acount the increment in price for this being a Hibrid Car
+	 */
 	public double SalePrice(){
 		double price = basePrice;
 		price += 0.15*basePrice;
 		return price;
 	}
 
+	/**
+	 * Calculates the consumption of gasoline per kilometer of the Car
+	 */
+	@Override
 	public double GasolineConsumption(){
 		return tankCapacity*(cylinderCapacity/180);
 	}
 
+	/**
+	 * Calculates the consumption of battery per kilometer of the Car
+	 */
 	public double BatteryConsumption(){
 		double consumption = 0;
 		if (hasFastCharger){
@@ -52,10 +77,16 @@ public class Hibrid extends Car implements BatteryBearer, MotorBearer {
 		return consumption;
 	}
 
+	/**
+	 * Fetches the type of fuel the motor utilizes
+	 */
 	public FuelType getFuelType() {
 		return fuelType;
 	}
 
+	/**
+	 * Adds the data exclusive to teh Hibrid Car to the toString()
+	 */
 	@Override
 	public String toString() {
 		return super.toString() + "\nTank capacity: " + tankCapacity + "\nFuel type: " + fuelType + "\nBattery duration: " + batteryDuration + "\nDoes it have a fast charger?: " + hasFastCharger;

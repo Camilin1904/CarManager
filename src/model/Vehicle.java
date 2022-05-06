@@ -1,21 +1,51 @@
 package model;
 
-import java.time.LocalDate;
+import java.time.LocalDate;//Import LocalDate to look for the actual year acurately
 
+/**
+ * Class of the vehicles
+ */
 public abstract class Vehicle {
 
+	/**
+	 * The date of the day
+	 */
 	protected LocalDate today;
+	/**
+	 * An array containing all of the documents of the vehicle
+	 */
 	protected Document[] documents;
+	/**
+	 * teh base price of the vehicle
+	 */
 	protected double basePrice;
+	/**
+	 * the brand of teh vehicle
+	 */
 	protected String brand;
+	/**
+	 * the model(year of production) of the vehicle
+	 */
 	protected int model;
+	/**
+	 * teh cylinder capacity of teh vehicle
+	 */
 	protected double cylinderCapacity;
+	/**
+	 * teh mileage of the vehicle(is only abvove 0 if isNew is false)
+	 */
 	protected double mileage;
+	/**
+	 * Whether or not the car is new
+	 */
 	protected boolean isNew;
+	/**
+	 * The license plate of the vehicle(Only filled if isNew is false)
+	 */
 	protected String licensePlate;
 
 	/**
-	 * 
+	 * Builder
 	 * @param basePrice
 	 * @param brand
 	 * @param model
@@ -39,25 +69,42 @@ public abstract class Vehicle {
 		today = LocalDate.now();
 	}
 
+	/**
+	 * Fetches the brand
+	 * @return brand
+	 */
 	public String getBrand() {
 		return brand;
 	}
-
+	/**
+	 * Fetches the mielage
+	 * @return mileage
+	 */
 	public double getMileage() {
 		return mileage;
 	}
-
+	/**
+	 * Fetches the model
+	 * @return model
+	 */
 	public int getModel() {
 		return model;
 	}
 
+	/**
+	 * Fetches isNew
+	 * @return isNew
+	 */
 	public boolean getIsNew() {
 		return isNew;
 	}
 
+	/**
+	 * toString
+	 */
 	public String toString(){
 		String pCard = "", soat = "", rtm = "";
-		if (documents[0] == null){
+		if (documents[0] == null){//checks if the property card is null to avoid a null pointer exeption
 			pCard = "non-Existent";
 		}
 		else{
@@ -70,13 +117,17 @@ public abstract class Vehicle {
 			soat = documents[1].DecodeImage();
 		}
 		if (documents[2] == null){
-			pCard = "non-Existent";
+			rtm = "non-Existent";
 		}
 		else{
 			rtm = documents[2].DecodeImage();
 		}
-		return "\nBrand: " + brand + "\nModel: " + model +"\nBase price: " + basePrice + "\nCylinder capacity: " + cylinderCapacity + "\nMileage: " + mileage + "\nIs it new?: " + isNew + "\nLicense plate: " + licensePlate + "\nPropertyCard id: " + pCard + "\nSoat id: " + soat + "\nTechnical mechanical revision id: " + rtm; 
+		return "\nBrand: " + brand + "\nModel: " + model +"\nBase price: " + basePrice + "\nSale price: " + SalePrice() + "\nCylinder capacity: " + cylinderCapacity + "\nMileage: " + mileage + "\nIs it new?: " + isNew + "\nLicense plate: " + licensePlate + "\nPropertyCard id: " + pCard + "\nSoat id: " + soat + "\nTechnical mechanical revision id: " + rtm; 
 	}
+	/**
+	 * The first step in calculating the sale price of a vehicle: Checking whether the behicle has all of its documentation or not to determine if 500000 are added to the base price
+	 * @return price
+	 */
 	public double SalePrice(){
 		double price = 0;
 		if ((documents[1]==null||documents[1].getYear()!=today.getYear())||(documents[2]==null||documents[2].getYear()!=today.getYear())){

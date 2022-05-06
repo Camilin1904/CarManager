@@ -1,14 +1,28 @@
 package model;
-
+/**
+ * The soat document
+ */
 public class Soat extends Document {
 
+	/**
+	 * The maximum value the soat would cover in case of an accident
+	 */
 	private double maxCoverageValue;
 
+	/**
+	 * Builder
+	 * @param cost
+	 * @param year
+	 * @param maxCoverageValue
+	 */
 	public Soat(double cost, int year, double maxCoverageValue){
 		super(cost, year);
 		this.maxCoverageValue = maxCoverageValue;
 	}
 
+	/**
+	 * Decodes the id of the image moving along the y axis until the end, the moving in teh x axis
+	 */
 	public String DecodeImage() {
 		String sImage = "";
 		for (int counter=0; counter<IMAGE_SIZE; counter++){

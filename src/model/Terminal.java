@@ -4,16 +4,25 @@ import java.util.ArrayList;
 
 public class Terminal {
 
-	ArrayList<Vehicle> vehicles;
-	OldVehicleParkingLot parkingLot;
+	/**
+	 * Colection of vehicles
+	 */
+	private ArrayList<Vehicle> vehicles;
+	/**
+	 * The parking lot where older cars go to be stored
+	 */
+	private OldVehicleParkingLot parkingLot;
 
+	/**
+	 * Builder
+	 */
 	public Terminal(){
 		vehicles = new ArrayList<Vehicle>();
 		parkingLot = new OldVehicleParkingLot();
 	}
 
 	/**
-	 * 
+	 * Method to add an electric car
 	 * @param basePrice
 	 * @param brand
 	 * @param model
@@ -51,7 +60,7 @@ public class Terminal {
 		else{
 			documents[1] = null;
 		}
-		if (rCost>0){
+		if (rCost>=0){
 			documents[2] = new Rtm(rCost, rYear, rGasLevels);
 		}
 		else{
@@ -62,7 +71,7 @@ public class Terminal {
 	}
 
 	/**
-	 * 
+	 * Method to add a hibrid car.
 	 * @param basePrice
 	 * @param brand
 	 * @param model
@@ -113,7 +122,7 @@ public class Terminal {
 		else{
 			documents[1] = null;
 		}
-		if (rCost>0){
+		if (rCost>=0){
 			documents[2] = new Rtm(rCost, rYear, rGasLevels);
 		}
 		else{
@@ -124,7 +133,7 @@ public class Terminal {
 	}
 
 	/**
-	 * 
+	 * Method to add a fuel Car.
 	 * @param basePrice
 	 * @param brand
 	 * @param model
@@ -173,7 +182,7 @@ public class Terminal {
 		else{
 			documents[1] = null;
 		}
-		if (rCost>0){
+		if (rCost>=0){
 			documents[2] = new Rtm(rCost, rYear, rGasLevels);
 		}
 		else{
@@ -183,16 +192,23 @@ public class Terminal {
 		vehicles.add(new Fuel(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted,cType, tankCapacity, fType, documents));
 	}
 
+	/**
+	 * Shows all of the types of cars.
+	 * @return A list with the car types enumerated in order
+	 */
 	public String showCarTypes(){
 		return "1). " + CarType.SEDAN + "\n2). " + 	CarType.VAN;
 	}
-
+	/**
+	 * Shows all of the types of fuels a vehicle may use.
+	 * @return A list with the fuel types enumerated in order
+	 */
 	public String showFuelTypes(){
 		return "1). " + FuelType.DIESEL + "\n2). " + FuelType.PLUS_GASOLINE + "\n3). " + FuelType.STANDARD_GASOLINE;
 	}
 
 	/**
-	 * 
+	 * Method to add a Motorcycle.
 	 * @param basePrice
 	 * @param brand
 	 * @param model
@@ -235,30 +251,39 @@ public class Terminal {
 
 		if(!isNew){
 			documents[0] = new PropertyCard(pCost, pYear);
+			if (sCost>0){
+				documents[1] = new Soat(sCost, sYear, sMaxCoverage);
+			}
+			else{
+				documents[1] = null;
+			}
+			if (rCost>0){
+				documents[2] = new Rtm(rCost, rYear, rGasLevels);
+			}
+			else{
+				documents[2] = null;
+			}
 		}
 		else{
-			documents[0] = null;
-		}
-		if (sCost>0){
-			documents[1] = new Soat(sCost, sYear, sMaxCoverage);
-		}
-		else{
-			documents[1] = null;
-		}
-		if (rCost>0){
-			documents[2] = new Rtm(rCost, rYear, rGasLevels);
-		}
-		else{
-			documents[2] = null;
+			for(int counter=0; counter<3; counter++){
+				documents[counter] = null;
+			}
 		}
 
 		vehicles.add(new Motorcycle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, tankCapacity, bType, fType, documents));
 	}
-
+	/**
+	 * Shows all of the types of bikes.
+	 * @return A list with the bike types enumerated in order.
+	 */
 	public String showBikeTypes(){
 		return "1). " + BikeType.CROSS + "\n2). " + BikeType.SCOOTER + "\n3). " + BikeType.SPORT + "\n4). " + BikeType.STANDARD;
 	}
 
+	/**
+	 * Returns a string with all of the vehicle's main data (brand/model/mileage)
+	 * @return brand/model/mileage
+	 */
 	public String DisplayVehicles(){
 		String message = "";
 
@@ -269,6 +294,11 @@ public class Terminal {
 		return message;
 	}
 
+	/**
+	 * Fetches the sale price of a given vehicle
+	 * @param vehicleIndex
+	 * @return SalePrice
+	 */
 	public double getSalePrice(int vehicleIndex){
 		return vehicles.get(vehicleIndex-1).SalePrice();
 	}
@@ -324,6 +354,10 @@ public class Terminal {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * Returns a string with all of the "toString()" methods of the vehicles that are an instance of Car.
+	 * @return a String with the "Cars".
+	 */
 	public String DisplayCars() {
 		String message = "";
 		int realCounter = 0;
@@ -337,6 +371,10 @@ public class Terminal {
 		return message;
 	}
 
+	/**
+	 * Returns a String with all of the "toString()" methods of the vehicles who are an instance of MotorBearer and whose fuel type are STANDARD_GASOLINE
+	 * @return a String with the vehicles whose fuel is STANDARD_GASOLINE
+	 */
 	public String DisplayGasoline() {
 		String message = "";
 		int realCounter = 0;
@@ -351,6 +389,10 @@ public class Terminal {
 		return message;
 	}
 
+	/**
+	 * Returns a String with all of the "toString()" methods of the vehicles who are an instance of MotorBearer and whose fuel type are PLUS_GASOLINE
+	 * @return a String with the vehicles whose fuel is PLUS_GASOLINE
+	 */
 	public String DisplayExtra() {
 		String message = "";
 		int realCounter = 0;
@@ -365,6 +407,10 @@ public class Terminal {
 		return message;
 	}
 
+	/**
+	 * Returns a string with all of the "toString()" methods of the vehicles that are an instance of Motorcycles.
+	 * @return a String with the "Bikes".
+	 */
 	public String DisplayBikes() {
 		String message = "";
 		int realCounter = 0;
@@ -377,7 +423,10 @@ public class Terminal {
 		}
 		return message;
 	}
-
+	/**
+	 * Returns a String with all of the "toString()" methods of the vehicles who are an instance of MotorBearer and whose fuel type are DIESEL
+	 * @return a String with the vehicles whose fuel is DIESEL
+	 */
 	public String DisplayDiesel() {
 		String message = "";
 		int realCounter = 0;
@@ -391,7 +440,10 @@ public class Terminal {
 		}
 		return message;
 	}
-
+	/**
+	 * Returns a String with all of the "toString()" methods of the vehicles who are an instance of BateryBearer
+	 * @return a String with the vehicles whose "fuel" is Electricity
+	 */
 	public String DisplayElectricity() {
 		String message = "";
 		int realCounter = 0;
@@ -405,6 +457,10 @@ public class Terminal {
 		return message;
 	}
 
+	/**
+	 * Returns a String with all of the New vehicles
+	 * @return A String with the vehicles whose "isNew" atribute is true
+	 */
 	public String DisplayNew() {
 		String message = "";
 		int realCounter = 0;	
@@ -417,6 +473,10 @@ public class Terminal {
 		return message;
 	}
 
+	/**
+	 * Returns a String with all of the Used vehicles
+	 * @return A String with the vehicles whose "isNew" atribute is false
+	 */
 	public String DisplayUsed() {
 		String message = "";
 		int realCounter = 0;
@@ -462,8 +522,15 @@ public class Terminal {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * Returns the number of registered vehicle
+	 * @return the size of the ArrayList vehicles	
+	 */
 	public int getNumVehicles(){
 		return vehicles.size();
 	}
 
+	public boolean getIsNew(int index){
+		return vehicles.get(index).getIsNew();
+	}
 }

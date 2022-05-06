@@ -1,12 +1,21 @@
 package model;
 
+/**
+ * Electric powered car
+ */
 public class Electric extends Car implements BatteryBearer {
 
+	/**
+	 * Whether or not the Electric Car has a fast charger
+	 */
 	private boolean hasFastCharger;
+	/**
+	 * The duration of the battery. 
+	 */
 	private double batteryDuration;
 
 	/**
-	 * 
+	 * Builder
 	 * @param basePrice
 	 * @param brand
 	 * @param model
@@ -26,6 +35,9 @@ public class Electric extends Car implements BatteryBearer {
 		this.batteryDuration = batteryDuration;
 	}
 
+	/**
+	 * The price at which the Electric car will be sold, it takes into acount the 20% increment in price it gets for being an Electric Car
+	 */
 	@Override
 	public double SalePrice() {
 		double price = super.SalePrice();
@@ -33,6 +45,9 @@ public class Electric extends Car implements BatteryBearer {
 		return price;
 	}
 
+	/**
+	 * The consumption of battery per kilometer of the Car
+	 */
 	@Override
 	public double BatteryConsumption() {
 		double consumption = 0;
@@ -45,6 +60,9 @@ public class Electric extends Car implements BatteryBearer {
 		return consumption;
 	}
 
+	/**
+	 * Adds the data exclusive to the Electric Car to the toString()
+	 */
 	@Override
 	public String toString() {
 		return super.toString() + "\nBattery duration: " + batteryDuration + "\nBattery consumption: " + BatteryConsumption() + "\nDoes it have a fast charger?: " + hasFastCharger;

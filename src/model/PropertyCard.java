@@ -1,10 +1,21 @@
 package model;
 
+/**
+ * The property card
+ */
 public class PropertyCard extends Document {
+    /**
+     * Builder
+     * @param cost
+     * @param year
+     */
     public PropertyCard(double cost, int year){
         super(cost, year);
     }
 
+    /**
+     * Decodes the image by only picking the values on the cells that the sum of x and y are a pair number and not 0, going from top to bottom, from right to left
+     */
     @Override
     public String DecodeImage() {
         String sImage = "";

@@ -3,6 +3,7 @@ package ui;
 
 import model.Terminal;
 import java.util.Scanner;
+import java.time.LocalDate;
 /**
  * Program desogne to keep an invetory of the vehicles in a dealership.
  */
@@ -16,6 +17,7 @@ public class CarManager {
 	 * Scanner
 	 */
 	private Scanner scan = new Scanner(System.in);
+	private LocalDate today;
 
 	/**
 	 * Main
@@ -24,6 +26,7 @@ public class CarManager {
 	public static void main(String args[]){
 		CarManager main = new CarManager();
 		main.terminal = new Terminal();
+		main.today = LocalDate.now();
 		main.Menu();
 	}
 
@@ -152,44 +155,59 @@ public class CarManager {
 			System.out.println("\nInput the year of the property card of the vehicle:");
 			pYear = scan.nextInt();
 			scan.nextLine();
+			do{
+				System.out.println("\nDoes this vehicle have a soat?: \n1) Yes. \n2) No.");
+				menu = scan.nextInt();
+				scan.nextLine();
+				if(menu!=1&&menu!=2){//Check in place to avoid th input of an unsoported value
+						System.out.println("Invalid input.");
+				}
+			}while(menu!=1&&menu!=2);
+			if(menu==1){//These values are filled only if there is a soat
+				System.out.println("\nInput the cost of the soat of the vehicle:");
+				sCost = scan.nextDouble();
+				scan.nextLine();
+				System.out.println("\nInput the year of the soat of the vehicle:");
+				sYear = scan.nextInt();
+				scan.nextLine();System.out.println("\nInput the maximum value the soat of the vehicle would cover:");
+				sMaxCoverage = scan.nextDouble();
+				scan.nextLine();
+			}
 		}
 		menu = 0;
-		do{
-			System.out.println("\nDoes this vehicle have a soat?: \n1) Yes. \n2) No.");
-			menu = scan.nextInt();
-			scan.nextLine();
-			if(menu!=1&&menu!=2){//Check in place to avoid th input of an unsoported value
-					System.out.println("Invalid input.");
+		if(!isNew){
+			do{
+				System.out.println("\nDoes this vehicle have a technical mechanical revision (Rtm)?: \n1) Yes. \n2) No.");
+				menu = scan.nextInt();
+				scan.nextLine();
+				if(menu!=1&&menu!=2){
+						System.out.println("Invalid input.");
+				}
+			}while(menu!=1&&menu!=2);
+			if(menu==1){
+				System.out.println("\nInput the cost of the Rtm of the vehicle:");
+				rCost = scan.nextDouble();
+				scan.nextLine();
+				System.out.println("\nInput the year of the Rtm of the vehicle:");
+				rYear = scan.nextInt();
+				if(vehicleType!=3){
+					scan.nextLine();System.out.println("\nInput the gas levels of the rtm:");
+					rGasLevels = scan.nextDouble();
+					scan.nextLine();
+				}
 			}
-		}while(menu!=1&&menu!=2);
-		if(menu==1){//These values are filled only if there is a soat
-			System.out.println("\nInput the cost of the soat of the vehicle:");
-			sCost = scan.nextDouble();
-			scan.nextLine();
-			System.out.println("\nInput the year of the soat of the vehicle:");
-			sYear = scan.nextInt();
-			scan.nextLine();System.out.println("\nInput the maximum value the soat of the vehicle would cover:");
-			sMaxCoverage = scan.nextDouble();
+		}
+		else{
+			rCost = 0;
+			rYear = today.getYear();
+			rGasLevels = 0;
 			scan.nextLine();
 		}
-		do{
-			System.out.println("\nDoes this vehicle have a technical mechanical revision (Rtm)?: \n1) Yes. \n2) No.");
-			menu = scan.nextInt();
-			scan.nextLine();
-			if(menu!=1&&menu!=2){
-					System.out.println("Invalid input.");
-			}
-		}while(menu!=1&&menu!=2);
-		if(menu==1){
-			System.out.println("\nInput the cost of the Rtm of the vehicle:");
-			rCost = scan.nextDouble();
-			scan.nextLine();
-			System.out.println("\nInput the year of the Rtm of the vehicle:");
-			rYear = scan.nextInt();
-			scan.nextLine();System.out.println("\nInput the gas levels o fthe rtm:");
-			rGasLevels = scan.nextDouble();
-			scan.nextLine();
-		}
+		
+		
+		
+		menu = 0;
+		
 		switch(vehicleType){//Decides which vehicle type to create depending on what the user wants
 			case(1):
 				AddFuelCar(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate);
@@ -295,7 +313,7 @@ public class CarManager {
 		double batteryDuration = 0;
 		int doorNum = 0, carType = 0, menu = 0;
 		boolean isTinted = true, hasFastCharger = false;
-
+		rGasLevels = 0;
 		do{
 			System.out.println("\nInput the type of the vehicle: \n");
 			System.out.println(terminal.showCarTypes());
@@ -487,7 +505,10 @@ public class CarManager {
 		// TODO - implement CarManager.AddRtm
 		throw new UnsupportedOperationException();
 	}
-
+	
+	/**
+	 * Prints a menu where te user chooses how to segregate the vehicles to be displayed to them
+	 */
 	public void DisplayVehicles() {
 		int menu = 0;
 		do{
@@ -561,6 +582,9 @@ public class CarManager {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * Fetches the sale price of the selected vehicle
+	 */
 	public void getSalePrice(){
 		int vehicle = 0;
 		System.out.println("\nInput the vehicle: \n");
