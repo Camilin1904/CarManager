@@ -172,28 +172,26 @@ public class CarManager {
 				scan.nextLine();System.out.println("\nInput the maximum value the soat of the vehicle would cover:");
 				sMaxCoverage = scan.nextDouble();
 				scan.nextLine();
-			}
-		}
-		menu = 0;
-		if(!isNew){
-			do{
-				System.out.println("\nDoes this vehicle have a technical mechanical revision (Rtm)?: \n1) Yes. \n2) No.");
-				menu = scan.nextInt();
-				scan.nextLine();
-				if(menu!=1&&menu!=2){
-						System.out.println("Invalid input.");
-				}
-			}while(menu!=1&&menu!=2);
-			if(menu==1){
-				System.out.println("\nInput the cost of the Rtm of the vehicle:");
-				rCost = scan.nextDouble();
-				scan.nextLine();
-				System.out.println("\nInput the year of the Rtm of the vehicle:");
-				rYear = scan.nextInt();
-				if(vehicleType!=3){
-					scan.nextLine();System.out.println("\nInput the gas levels of the rtm:");
-					rGasLevels = scan.nextDouble();
+				menu = 0;
+				do{
+					System.out.println("\nDoes this vehicle have a technical mechanical revision (Rtm)?: \n1) Yes. \n2) No.");
+					menu = scan.nextInt();
 					scan.nextLine();
+					if(menu!=1&&menu!=2){
+							System.out.println("Invalid input.");
+					}
+				}while(menu!=1&&menu!=2);
+				if(menu==1){
+					System.out.println("\nInput the cost of the Rtm of the vehicle:");
+					rCost = scan.nextDouble();
+					scan.nextLine();
+					System.out.println("\nInput the year of the Rtm of the vehicle:");
+					rYear = scan.nextInt();
+					if(vehicleType!=3){
+						scan.nextLine();System.out.println("\nInput the gas levels of the rtm:");
+						rGasLevels = scan.nextDouble();
+						scan.nextLine();
+					}
 				}
 			}
 		}
@@ -334,17 +332,17 @@ public class CarManager {
 			scan.nextLine();
 			switch (menu){
 				case (1):
-					isNew = true;
+					hasFastCharger = true;
 					break;
 				case(2):
-					isNew = false;
+					hasFastCharger = false;
 					break;
 				default:
 					System.out.println("Invalid input.");
 			}
 		}while(menu!=1&&menu!=2);
 		do{
-			System.out.println("\nAre the windows of thsi vehicle tinted?: \n1) Yes. \n2) No.");
+			System.out.println("\nAre the windows of this vehicle tinted?: \n1) Yes. \n2) No.");
 			menu = scan.nextInt();
 			scan.nextLine();
 			switch (menu){
