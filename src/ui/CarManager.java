@@ -39,7 +39,7 @@ public class CarManager {
 
 		System.out.println("\n\nInitializing...\n\n\n\nVehicle Management program: \n");
 		do{
-			System.out.println("\nChoose an option:\n\n1) Register a vehicle.\n2) Calculate sale price of a vehicle\n3) General Vehicle Data\nN) Exit");
+			System.out.println("\nChoose an option:\n\n1) Register a vehicle.\n2) Calculate sale price of a vehicle\n3) General Vehicle Data \n4) Check the state of the documentation of a vehicle.\n5) Check the 	 population of the old vehicle parking lot.\nN) Exit");
 			menu = scan.nextLine();
 			menu = menu.toUpperCase();//Used so that a lower case N closes the program
 			switch (menu){
@@ -95,6 +95,12 @@ public class CarManager {
 				case("3"):
 					DisplayVehicles();
 					break;
+				case ("4"):
+					DocumentsState();
+					break;
+				case ("5"):
+					DisplayParkingLot();
+					break;
 				case("N"):
 					System.out.println("\nClosing...");
 					exit = true;
@@ -113,7 +119,7 @@ public class CarManager {
 	public void AddVehicle(int vehicleType){
 		double basePrice = 0, mileage = 0, cylinderCapacity = 0, sCost = -1, sMaxCoverage = 0, pCost = -1, rCost = -1, rGasLevels = 0;
 		int sYear = 0, pYear = 0, rYear = 0, model = 0, menu = 0;
-		String brand = "", licensePlate = "";
+		String brand = "", licensePlate = "", id = "";
 		boolean isNew = true;
 
 		System.out.println("Input the brand of the vehicle:");
@@ -202,22 +208,26 @@ public class CarManager {
 			scan.nextLine();
 		}
 		
+		for (int counter = 0; counter<10; counter++){
+			id += (int)(Math.random()*(10)); 	
+		}
+		System.out.println("This is the ID of the car: " + id);
 		
 		
 		menu = 0;
 		
 		switch(vehicleType){//Decides which vehicle type to create depending on what the user wants
 			case(1):
-				AddFuelCar(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate);
+				AddFuelCar(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate, id);
 				break;
 			case(2):
-				AddHibirdCar(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate);
+				AddHibirdCar(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate, id);
 				break;
 			case(3):
-				AddElectricCar(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate);
+				AddElectricCar(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate, id);
 				break;
 			case(4):
-				AddBike(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate);
+				AddBike(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate, id);
 				break;
 		}
 		
@@ -241,7 +251,7 @@ public class CarManager {
 	 * @param mileage
 	 * @param licensePlate
 	 */
-	public void AddFuelCar(String brand, int model, double basePrice, double cylinderCapacity, boolean isNew, double sCost, int sYear, double sMaxCoverage, double rCost, int rYear, double rGasLevels, double pCost, int pYear, double mileage, String licensePlate) {
+	public void AddFuelCar(String brand, int model, double basePrice, double cylinderCapacity, boolean isNew, double sCost, int sYear, double sMaxCoverage, double rCost, int rYear, double rGasLevels, double pCost, int pYear, double mileage, String licensePlate, String id) {
 		double tankCapacity = 0;
 		int doorNum = 0, carType = 0, fuelType = 0, menu = 0;
 		boolean isTinted = true;
@@ -286,7 +296,7 @@ public class CarManager {
 			}
 		}while(menu!=1&&menu!=2);
 		
-		terminal.AddVehicle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, carType, tankCapacity, fuelType, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels);//Adds fuel car
+		System.out.println(terminal.AddVehicle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, carType, tankCapacity, fuelType, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels, id));//Adds fuel car
 	}
 
 	/**
@@ -307,7 +317,7 @@ public class CarManager {
 	 * @param mileage
 	 * @param licensePlate
 	 */
-	public void AddElectricCar(String brand, int model, double basePrice, double cylinderCapacity, boolean isNew, double sCost, int sYear, double sMaxCoverage, double rCost, int rYear, double rGasLevels, double pCost, int pYear, double mileage, String licensePlate) {
+	public void AddElectricCar(String brand, int model, double basePrice, double cylinderCapacity, boolean isNew, double sCost, int sYear, double sMaxCoverage, double rCost, int rYear, double rGasLevels, double pCost, int pYear, double mileage, String licensePlate, String id) {
 		double batteryDuration = 0;
 		int doorNum = 0, carType = 0, menu = 0;
 		boolean isTinted = true, hasFastCharger = false;
@@ -357,7 +367,7 @@ public class CarManager {
 			}
 		}while(menu!=1&&menu!=2);
 		
-		terminal.AddVehicle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, carType, hasFastCharger, batteryDuration, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels);
+		System.out.println(terminal.AddVehicle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, carType, hasFastCharger, batteryDuration, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels, id));
 	}
 
 	/**
@@ -378,7 +388,7 @@ public class CarManager {
 	 * @param mileage
 	 * @param licensePlate
 	 */
-	public void AddHibirdCar(String brand, int model, double basePrice, double cylinderCapacity, boolean isNew, double sCost, int sYear, double sMaxCoverage, double rCost, int rYear, double rGasLevels, double pCost, int pYear, double mileage, String licensePlate) {
+	public void AddHibirdCar(String brand, int model, double basePrice, double cylinderCapacity, boolean isNew, double sCost, int sYear, double sMaxCoverage, double rCost, int rYear, double rGasLevels, double pCost, int pYear, double mileage, String licensePlate, String id) {
 		double tankCapacity = 0, batteryDuration = 0;
 		int doorNum = 0, carType = 0, fuelType = 0,menu = 0;
 		boolean isTinted = true, hasFastCharger = false;
@@ -440,7 +450,7 @@ public class CarManager {
 			}
 		}while(menu!=1&&menu!=2);
 
-		terminal.AddVehicle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, carType, tankCapacity, hasFastCharger, batteryDuration, fuelType, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels);
+		System.out.println(terminal.AddVehicle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, carType, tankCapacity, hasFastCharger, batteryDuration, fuelType, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels, id));
 	}
 
 	/**
@@ -461,7 +471,7 @@ public class CarManager {
 	 * @param mileage
 	 * @param licensePlate
 	 */
-	public void AddBike(String brand, int model, double basePrice, double cylinderCapacity, boolean isNew, double sCost, int sYear, double sMaxCoverage, double rCost, int rYear, double rGasLevels, double pCost, int pYear, double mileage, String licensePlate) {
+	public void AddBike(String brand, int model, double basePrice, double cylinderCapacity, boolean isNew, double sCost, int sYear, double sMaxCoverage, double rCost, int rYear, double rGasLevels, double pCost, int pYear, double mileage, String licensePlate, String id) {
 		double tankCapacity = 0;
 		int fuelType = 0, bikeType = 0;
 
@@ -486,7 +496,7 @@ public class CarManager {
 			}
 		}while(fuelType!=1&&fuelType!=2&&fuelType!=3);
 		
-		terminal.AddVehicle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, tankCapacity, bikeType, fuelType, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels);
+		System.out.println(terminal.AddVehicle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, tankCapacity, bikeType, fuelType, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels, id));
 	}
 
 	public void AddPropertyCard() {
@@ -596,5 +606,31 @@ public class CarManager {
 		}
 
 	}
+
+	public void DocumentsState(){
+		String id = "";
+		int vehicleId;
+
+		do{
+			System.out.println("\nInput the id of the vehicle(Or exit inputing N): ");
+			id = scan.nextLine();
+			id = id.toUpperCase();
+			vehicleId = terminal.FindVehicleIndex(id);
+			if(vehicleId>=0&&!id.equals("N")){
+				System.out.println(terminal.getAllDocumentation(vehicleId));
+				id = "N";
+			}
+			else if (!id.equals("N")){
+				System.out.println("Non-existent vehicle");
+			}
+		}while(!id.equals("N"));
+		
+	}
+
+	public void DisplayParkingLot(){
+		System.out.println(terminal.DisplayParkingLot());
+	}
+
+
 
 }

@@ -34,9 +34,10 @@ public class Terminal {
 	 * @param isTinted
 	 * @param carType
 	 * @param hasFastCharger
-	 * @param batteryDuration
 	 */
-	public void AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, int carType, boolean hasFastCharger, double batteryDuration, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels) {
+	public String AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, int carType, boolean hasFastCharger, double batteryDuration, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
+		String message = "";
+		int pos = 0;
 		Document[] documents = new Document[3];
 		CarType cType = null;
 		switch (carType){
@@ -67,7 +68,58 @@ public class Terminal {
 			documents[2] = null;
 		}
 
-		vehicles.add(new Electric(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, cType, hasFastCharger, batteryDuration, documents));
+		vehicles.add(new Electric(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, cType, hasFastCharger, batteryDuration, documents, id));
+		
+		if(model<=2015){
+			switch (model){
+				case(2015):
+					pos = parkingLot.FindFirstemptyForLane(0);
+					if (pos>=0){
+						parkingLot.AddCar(0, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+				case(2014):
+					pos = parkingLot.FindFirstemptyForLane(1);
+					if (pos>=0){
+						parkingLot.AddCar(1, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+				case(2013):
+					pos = parkingLot.FindFirstemptyForLane(2);
+					if (pos>=0){
+						parkingLot.AddCar(2, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+				case(2012):
+					pos = parkingLot.FindFirstemptyForLane(3);
+					if (pos>=0){
+						parkingLot.AddCar(3, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+				default:
+					pos = parkingLot.FindFirstemptyForLane(4);
+					if (pos>=0){
+						parkingLot.AddCar(4, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+			}
+		}
+		return message;
 	}
 
 	/**
@@ -86,7 +138,9 @@ public class Terminal {
 	 * @param hasFastCharger
 	 * @param batteryDuration
 	 */
-	public void AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, int carType, double tankCapacity, boolean hasFastCharger, double batteryDuration, int fuelType, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels) {
+	public String AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, int carType, double tankCapacity, boolean hasFastCharger, double batteryDuration, int fuelType, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
+		String message = "";
+		int pos = 0;
 		Document[] documents = new Document[3];
 		CarType cType = null;
 		FuelType fType = null;
@@ -129,7 +183,57 @@ public class Terminal {
 			documents[2] = null;
 		}
 
-		vehicles.add(new Hibrid(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, cType, tankCapacity, hasFastCharger, batteryDuration, fType, documents));
+		vehicles.add(new Hibrid(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, cType, tankCapacity, hasFastCharger, batteryDuration, fType, documents, id));
+		if(model<=2015){
+			switch (model){
+				case(2015):
+					pos = parkingLot.FindFirstemptyForLane(0);
+					if (pos>=0){
+						parkingLot.AddCar(0, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+				case(2014):
+					pos = parkingLot.FindFirstemptyForLane(1);
+					if (pos>=0){
+						parkingLot.AddCar(1, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+				case(2013):
+					pos = parkingLot.FindFirstemptyForLane(2);
+					if (pos>=0){
+						parkingLot.AddCar(2, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+				case(2012):
+					pos = parkingLot.FindFirstemptyForLane(3);
+					if (pos>=0){
+						parkingLot.AddCar(3, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+				default:
+					pos = parkingLot.FindFirstemptyForLane(4);
+					if (pos>=0){
+						parkingLot.AddCar(4, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+			}
+		}
+		return message;
 	}
 
 	/**
@@ -146,7 +250,9 @@ public class Terminal {
 	 * @param carType
 	 * @param tankCapacity
 	 */
-	public void AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, int carType, double tankCapacity, int fuelType, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels) {
+	public String AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, int carType, double tankCapacity, int fuelType, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
+		String message = "";
+		int pos = 0;
 		Document[] documents = new Document[3];
 		CarType cType = null;
 		FuelType fType = null;
@@ -189,7 +295,57 @@ public class Terminal {
 			documents[2] = null;
 		}
 
-		vehicles.add(new Fuel(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted,cType, tankCapacity, fType, documents));
+		vehicles.add(new Fuel(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted,cType, tankCapacity, fType, documents, id));
+		if(model<=2015){
+			switch (model){
+				case(2015):
+					pos = parkingLot.FindFirstemptyForLane(0);
+					if (pos>=0){
+						parkingLot.AddCar(0, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+				case(2014):
+					pos = parkingLot.FindFirstemptyForLane(1);
+					if (pos>=0){
+						parkingLot.AddCar(1, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+				case(2013):
+					pos = parkingLot.FindFirstemptyForLane(2);
+					if (pos>=0){
+						parkingLot.AddCar(2, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+				case(2012):
+					pos = parkingLot.FindFirstemptyForLane(3);
+					if (pos>=0){
+						parkingLot.AddCar(3, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+				default:
+					pos = parkingLot.FindFirstemptyForLane(4);
+					if (pos>=0){
+						parkingLot.AddCar(4, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+			}
+		}
+		return message;
 	}
 
 	/**
@@ -219,7 +375,9 @@ public class Terminal {
 	 * @param tankCapacity
 	 * @param bikeType
 	 */
-	public void AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, double tankCapacity, int bikeType, int fuelType, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels) {
+	public String AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, double tankCapacity, int bikeType, int fuelType, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
+		String message = "";
+		int pos = 0;
 		Document[] documents = new Document[3];
 		BikeType bType = null;
 		FuelType fType = null;
@@ -270,7 +428,57 @@ public class Terminal {
 			}
 		}
 
-		vehicles.add(new Motorcycle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, tankCapacity, bType, fType, documents));
+		vehicles.add(new Motorcycle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, tankCapacity, bType, fType, documents, id));
+		if(model<=2015){
+			switch (model){
+				case(2015):
+					pos = parkingLot.FindFirstemptyForLane(0);
+					if (pos>=0){
+						parkingLot.AddCar(0, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+				case(2014):
+					pos = parkingLot.FindFirstemptyForLane(1);
+					if (pos>=0){
+						parkingLot.AddCar(1, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+				case(2013):
+					pos = parkingLot.FindFirstemptyForLane(2);
+					if (pos>=0){
+						parkingLot.AddCar(2, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+				case(2012):
+					pos = parkingLot.FindFirstemptyForLane(3);
+					if (pos>=0){
+						parkingLot.AddCar(3, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+				default:
+					pos = parkingLot.FindFirstemptyForLane(4);
+					if (pos>=0){
+						parkingLot.AddCar(4, pos, vehicles.get(vehicles.size()-1));
+					}
+					else{
+						message = "Parking lot out of space";
+					}
+					break;
+			}
+		}
+		return message;
 	}
 	/**
 	 * Shows all of the types of bikes.
@@ -321,8 +529,7 @@ public class Terminal {
 	}
 
 	public String DisplayParkingLot() {
-		// TODO - implement Terminal.DisplayParkingLot
-		throw new UnsupportedOperationException();
+		return parkingLot.toString();
 	}
 
 	public String DisplayDocuments() {
@@ -532,5 +739,18 @@ public class Terminal {
 
 	public boolean getIsNew(int index){
 		return vehicles.get(index).getIsNew();
+	}
+
+	public int FindVehicleIndex(String id){
+		for (int counter=0; counter<vehicles.size(); counter++){
+			if (id.equals(vehicles.get(counter).getId())){
+				return counter;
+			}
+		}
+		return -1;
+	}
+
+	public String getAllDocumentation(int vehicleIndex){
+		return vehicles.get(vehicleIndex).ShowDocuments();
 	}
 }

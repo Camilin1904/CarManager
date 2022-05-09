@@ -30,8 +30,8 @@ public class Motorcycle extends Vehicle implements MotorBearer {
 	 * @param tankCapacity
 	 * @param bikeType
 	 */
-	public Motorcycle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, double tankCapacity, BikeType bikeType, FuelType fuelType, Document[] documents) {
-		super(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, documents);
+	public Motorcycle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, double tankCapacity, BikeType bikeType, FuelType fuelType, Document[] documents, String id) {
+		super(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, documents, id);
 		this.tankCapacity = tankCapacity;
 		this.bikeType = bikeType;
 		this.fuelType = fuelType;

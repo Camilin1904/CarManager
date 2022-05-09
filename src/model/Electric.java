@@ -29,8 +29,8 @@ public class Electric extends Car implements BatteryBearer {
 	 * @param hasFastCharger
 	 * @param batteryDuration
 	 */
-	public Electric(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, CarType carType, boolean hasFastCharger, double batteryDuration, Document[] documents) {
-		super(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, carType, documents);
+	public Electric(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, CarType carType, boolean hasFastCharger, double batteryDuration, Document[] documents, String id) {
+		super(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, carType, documents, id);
 		this.hasFastCharger = hasFastCharger;
 		this.batteryDuration = batteryDuration;
 	}

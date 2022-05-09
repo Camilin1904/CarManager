@@ -53,4 +53,8 @@ public abstract class Document {
 		return year;
 	}
 
+	public String toString(){
+		return "\nID: " + DecodeImage() +"\nCost: " + cost + "\nYear: " + year;
+	}
+
 }

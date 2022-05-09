@@ -10,7 +10,7 @@ public abstract class Car extends Vehicle {
 	 */
 	private CarType carType;
 	/**
-	 * teh number of doors the car has
+	 * the number of doors the car has
 	 */
 	private int doorNum;
 	/**
@@ -31,8 +31,8 @@ public abstract class Car extends Vehicle {
 	 * @param isTinted
 	 * @param carType
 	 */
-	public Car(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, CarType carType, Document[] documents) {
-		super(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, documents);
+	public Car(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, CarType carType, Document[] documents, String id) {
+		super(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, documents, id);
 		this.doorNum = doorNum;
 		this.isTinted = isTinted;
 		this.carType = carType;

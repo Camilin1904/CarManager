@@ -38,4 +38,8 @@ public class Rtm extends Document {
 		return sImage;
 	}
 
+	@Override
+	public String toString() {
+		return super.toString() + "\nGas levels: " + gasLevels;
+	}
 }

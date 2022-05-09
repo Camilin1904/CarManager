@@ -28,8 +28,8 @@ public class Fuel extends Car implements MotorBearer {
 	 * @param carType
 	 * @param tankCapacity
 	 */
-	public Fuel(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, CarType carType, double tankCapacity, FuelType fuelType, Document[] documents) {
-		super(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, carType, documents);
+	public Fuel(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, CarType carType, double tankCapacity, FuelType fuelType, Document[] documents, String id) {
+		super(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, carType, documents, id);
 		this.tankCapacity = tankCapacity;
 		this.fuelType = fuelType;
 	}

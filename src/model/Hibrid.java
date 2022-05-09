@@ -38,8 +38,8 @@ public class Hibrid extends Car implements BatteryBearer, MotorBearer {
 	 * @param hasFastCharger
 	 * @param batteryDuration
 	 */
-	public Hibrid(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, CarType carType, double tankCapacity, boolean hasFastCharger, double batteryDuration, FuelType fuelType, Document[] documents) {
-		super(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, carType, documents);
+	public Hibrid(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, CarType carType, double tankCapacity, boolean hasFastCharger, double batteryDuration, FuelType fuelType, Document[] documents, String id) {
+		super(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, carType, documents, id);
 		this.tankCapacity = tankCapacity;
 		this.fuelType = fuelType;
 		this.hasFastCharger = hasFastCharger;

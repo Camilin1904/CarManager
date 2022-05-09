@@ -34,4 +34,8 @@ public class Soat extends Document {
 		return sImage;
 	}
 
+	public String toString(){
+		return super.toString() + "\nMAximum value covered: " +maxCoverageValue;
+	}
+
 }

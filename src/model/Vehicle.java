@@ -16,7 +16,7 @@ public abstract class Vehicle {
 	 */
 	protected Document[] documents;
 	/**
-	 * teh base price of the vehicle
+	 * the base price of the vehicle
 	 */
 	protected double basePrice;
 	/**
@@ -28,11 +28,11 @@ public abstract class Vehicle {
 	 */
 	protected int model;
 	/**
-	 * teh cylinder capacity of teh vehicle
+	 * the cylinder capacity of teh vehicle
 	 */
 	protected double cylinderCapacity;
 	/**
-	 * teh mileage of the vehicle(is only abvove 0 if isNew is false)
+	 * the mileage of the vehicle(is only abvove 0 if isNew is false)
 	 */
 	protected double mileage;
 	/**
@@ -43,6 +43,10 @@ public abstract class Vehicle {
 	 * The license plate of the vehicle(Only filled if isNew is false)
 	 */
 	protected String licensePlate;
+	/**
+	 * The identification of the vehicle
+	 */
+	protected String id;
 
 	/**
 	 * Builder
@@ -57,7 +61,7 @@ public abstract class Vehicle {
 	 * @param soat
 	 * @param rtm
 	 */
-	public Vehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, Document[] documents) {
+	public Vehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, Document[] documents, String id) {
 		this.basePrice = basePrice;
 		this.brand = brand;
 		this.model = model;
@@ -66,6 +70,7 @@ public abstract class Vehicle {
 		this.isNew = isNew;
 		this.licensePlate = licensePlate;
 		this.documents = documents;
+		this.id = id;
 		today = LocalDate.now();
 	}
 
@@ -122,7 +127,7 @@ public abstract class Vehicle {
 		else{
 			rtm = documents[2].DecodeImage();
 		}
-		return "\nBrand: " + brand + "\nModel: " + model +"\nBase price: " + basePrice + "\nSale price: " + SalePrice() + "\nCylinder capacity: " + cylinderCapacity + "\nMileage: " + mileage + "\nIs it new?: " + isNew + "\nLicense plate: " + licensePlate + "\nPropertyCard id: " + pCard + "\nSoat id: " + soat + "\nTechnical mechanical revision id: " + rtm; 
+		return "\nId: " + id + "\nBrand: " + brand + "\nModel: " + model +"\nBase price: " + basePrice + "\nSale price: " + SalePrice() + "\nCylinder capacity: " + cylinderCapacity + "\nMileage: " + mileage + "\nIs it new?: " + isNew + "\nLicense plate: " + licensePlate + "\nPropertyCard id: " + pCard + "\nSoat id: " + soat + "\nTechnical mechanical revision id: " + rtm; 
 	}
 	/**
 	 * The first step in calculating the sale price of a vehicle: Checking whether the behicle has all of its documentation or not to determine if 500000 are added to the base price
@@ -134,6 +139,32 @@ public abstract class Vehicle {
 			price += 500000;
 		}
 		return price;
+	}
+
+	public String ShowDocuments(){
+		String message = "";
+		if(documents[0]!=null){
+			message += documents[0].toString();
+		}
+		else{
+			message += "Non existent property card.\n";
+		}
+		if(documents[1]!=null){
+			message += documents[1].toString();
+		}
+		else{
+			message += "Non existent soat.\n";
+		}
+		if(documents[2]!=null){
+			message += documents[2].toString();
+		}
+		else{
+			message += "Non existent Rtm.\n";
+		}
+		return message;
+	}
+	public String getId() {
+		return id;
 	}
 
 }
