@@ -78,6 +78,26 @@ public class OldVehicleParkingLot {
 		return message;
 	}
 
+	public String allToStringLane(int lane){
+		String message = "";
+		for (int counter=0; counter<10; counter++){
+			message += vehicles[counter][lane];
+		}
+		return message;
+	}
+
+	public double OcupationPercentage(){
+		int ocupation = 0, holder = 0;
+		for (int counter=0; counter<5; counter++){
+			holder = FindFirstemptyForLane(counter);
+			if (holder<0){
+				holder = 10;
+			}
+			ocupation += holder;
+		}
+		return (ocupation*100)/50;
+	}
+
 }
 
 /**

@@ -101,6 +101,35 @@ public class CarManager {
 				case ("5"):
 					DisplayParkingLot();
 					break;
+				case ("6"):
+				do{
+					System.out.println("\nWhatwould you like to do?: \n1) Look for the info of a vehicle in a given period of years. \n2) Look at the newest vehicles. \n3) Look at the oldest vehicles. \n4) Look ath the ocupation percentage of the parking lot. \nN) Exit");
+					menu = scan.nextLine();
+					menu = menu.toUpperCase();
+					switch (menu){
+						case ("1"):
+							DisplayLotYearRange();
+							exit = false;
+							break;
+						case("2"):
+							DisplayLotNewest();
+							exit = false;
+							break;
+						case("3"):
+							DisplayLotOldest();
+							exit = false;
+							break;
+						case ("4"):
+							ShowLotPercentage();
+							exit = false;
+							break;
+						case("N"):
+							exit = true;
+							break;
+						default:
+							System.out.println("\nInvalid input");
+					}
+				}while(!exit);
 				case("N"):
 					System.out.println("\nClosing...");
 					exit = true;
@@ -631,6 +660,39 @@ public class CarManager {
 		System.out.println(terminal.DisplayParkingLot());
 	}
 
+	public void DisplayLotYearRange(){
+		int year1 = 0, year2 = 0;
+		System.out.println("Which starting year?: \n1) 2015 \n2) 2014 \n3) 2013 \n4) 2012 \n5) 2012>");
+		year1 = scan.nextInt()-1;
+		System.out.println("Which finishing year?: \n1) 2015 \n2) 2014 \n3) 2013 \n4) 2012 \n5) 2012>");
+		year2 = scan.nextInt()-1;
+		if(year1>year2){
+			for (int counter=year2; counter<year1; counter++){
+				System.out.println(terminal.allToStringLane(counter));
+			}
+		}
+		else if(year1>year2){
+			for (int counter=year1; counter<year2; counter++){
+				System.out.println(terminal.allToStringLane(counter));
+			}
+		}
+		else{
+			System.out.println(terminal.allToStringLane(year1));
+		}
+	}
+
+	public void DisplayLotOldest(){
+		System.out.println(terminal.allToStringLane(4));
+	}
+
+
+	public void DisplayLotNewest(){
+		System.out.println(terminal.allToStringLane(0));
+	}
+
+	public void ShowLotPercentage(){
+		System.out.println("The ocupation percentage for the old vehicle parking lot is: " + terminal.getOcupationPercentage() + "%.");
+	}
 
 
 }

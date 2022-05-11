@@ -753,4 +753,12 @@ public class Terminal {
 	public String getAllDocumentation(int vehicleIndex){
 		return vehicles.get(vehicleIndex).ShowDocuments();
 	}
+
+	public String allToStringLane(int lane){
+		return parkingLot.allToStringLane(lane);
+	}
+
+	public double getOcupationPercentage(){
+		return parkingLot.OcupationPercentage();
+	}
 }
