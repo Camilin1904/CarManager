@@ -143,18 +143,21 @@ public abstract class Vehicle {
 
 	public String ShowDocuments(){
 		String message = "";
+		message += "PropertyCard:\n\n";
 		if(documents[0]!=null){
 			message += documents[0].toString();
 		}
 		else{
 			message += "Non existent property card.\n";
 		}
+		message += "\n\nSoat:\n\n";
 		if(documents[1]!=null){
 			message += documents[1].toString();
 		}
 		else{
 			message += "Non existent soat.\n";
 		}
+		message += "\n\nRtm:\n\n";
 		if(documents[2]!=null){
 			message += documents[2].toString();
 		}

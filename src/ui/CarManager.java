@@ -39,7 +39,7 @@ public class CarManager {
 
 		System.out.println("\n\nInitializing...\n\n\n\nVehicle Management program: \n");
 		do{
-			System.out.println("\nChoose an option:\n\n1) Register a vehicle.\n2) Calculate sale price of a vehicle\n3) General Vehicle Data \n4) Check the state of the documentation of a vehicle.\n5) Check the 	 population of the old vehicle parking lot.\nN) Exit");
+			System.out.println("\nChoose an option:\n\n1) Register a vehicle.\n2) Calculate sale price of a vehicle\n3) General Vehicle Data \n4) Check the state of the documentation of a vehicle.\n5) Check the population of the old vehicle parking lot. \n6) Parquing lot operations. \nN) Exit");
 			menu = scan.nextLine();
 			menu = menu.toUpperCase();//Used so that a lower case N closes the program
 			switch (menu){
@@ -607,11 +607,6 @@ public class CarManager {
 				break;
 		}
 
-	}
-
-	public void ShowParkingLot() {
-		// TODO - implement CarManager.ShowParkingLot
-		throw new UnsupportedOperationException();
 	}
 
 	public void MoveVehiclesToParkingLot() {
