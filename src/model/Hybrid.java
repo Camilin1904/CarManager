@@ -1,9 +1,9 @@
 package model;
 
 /**
- * The hibrid car
+ * The hybrid car
  */
-public class Hibrid extends Car implements BatteryBearer, MotorBearer {
+public class Hybrid extends Car implements BatteryBearer, MotorBearer {
 
 	/**
 	 * The type of fuel the Car uses in its motor
@@ -38,7 +38,7 @@ public class Hibrid extends Car implements BatteryBearer, MotorBearer {
 	 * @param hasFastCharger
 	 * @param batteryDuration
 	 */
-	public Hibrid(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, CarType carType, double tankCapacity, boolean hasFastCharger, double batteryDuration, FuelType fuelType, Document[] documents, String id) {
+	public Hybrid(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, CarType carType, double tankCapacity, boolean hasFastCharger, double batteryDuration, FuelType fuelType, Document[] documents, String id) {
 		super(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, carType, documents, id);
 		this.tankCapacity = tankCapacity;
 		this.fuelType = fuelType;
@@ -47,7 +47,7 @@ public class Hibrid extends Car implements BatteryBearer, MotorBearer {
 	}
 
 	/**
-	 * Calculates the sale price taking into acount the increment in price for this being a Hibrid Car
+	 * Calculates the sale price taking into acount the increment in price for this being a Hybrid Car
 	 */
 	public double SalePrice(){
 		double price = basePrice;

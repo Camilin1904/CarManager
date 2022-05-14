@@ -51,7 +51,7 @@ public class CarManager {
 						switch (menu){
 							case ("1"):
 								do{
-									System.out.println("\nWhat kind of car will be registered?: \n1)Fuel. \n2)Hibrid. \n3)Electric. \nN)Back.");
+									System.out.println("\nWhat kind of car will be registered?: \n1)Fuel. \n2)Hybrid. \n3)Electric. \nN)Back.");
 									menu = scan.nextLine();
 									menu = menu.toUpperCase();
 									switch (menu){
@@ -102,34 +102,36 @@ public class CarManager {
 					DisplayParkingLot();
 					break;
 				case ("6"):
-				do{
-					System.out.println("\nWhatwould you like to do?: \n1) Look for the info of a vehicle in a given period of years. \n2) Look at the newest vehicles. \n3) Look at the oldest vehicles. \n4) Look ath the ocupation percentage of the parking lot. \nN) Exit");
-					menu = scan.nextLine();
-					menu = menu.toUpperCase();
-					switch (menu){
-						case ("1"):
-							DisplayLotYearRange();
-							exit = false;
-							break;
-						case("2"):
-							DisplayLotNewest();
-							exit = false;
-							break;
-						case("3"):
-							DisplayLotOldest();
-							exit = false;
-							break;
-						case ("4"):
-							ShowLotPercentage();
-							exit = false;
-							break;
-						case("N"):
-							exit = true;
-							break;
-						default:
-							System.out.println("\nInvalid input");
-					}
-				}while(!exit);
+					do{
+						System.out.println("\nWhatwould you like to do?: \n1) Look for the info of a vehicle in a given period of years. \n2) Look at the newest vehicles. \n3) Look at the oldest vehicles. \n4) Look ath the ocupation percentage of the parking lot. \nN) Exit");
+						menu = scan.nextLine();
+						menu = menu.toUpperCase();
+						switch (menu){
+							case ("1"):
+								DisplayLotYearRange();
+								exit = false;
+								break;
+							case("2"):
+								DisplayLotNewest();
+								exit = false;
+								break;
+							case("3"):
+								DisplayLotOldest();
+								exit = false;
+								break;
+							case ("4"):
+								ShowLotPercentage();
+								exit = false;
+								break;
+							case("N"):
+								exit = true;
+								break;
+							default:
+								System.out.println("\nInvalid input");
+						}
+					}while(!exit);
+					exit = false;
+					break;
 				case("N"):
 					System.out.println("\nClosing...");
 					exit = true;
@@ -250,7 +252,7 @@ public class CarManager {
 				AddFuelCar(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate, id);
 				break;
 			case(2):
-				AddHibirdCar(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate, id);
+				AddHybridCar(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate, id);
 				break;
 			case(3):
 				AddElectricCar(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate, id);
@@ -400,7 +402,7 @@ public class CarManager {
 	}
 
 	/**
-	 * Adds a hibrid car to the colection of vehicles, asking for the specific data for this type of car
+	 * Adds a hybrid car to the colection of vehicles, asking for the specific data for this type of car
 	 * @param brand
 	 * @param model
 	 * @param basePrice
@@ -417,7 +419,7 @@ public class CarManager {
 	 * @param mileage
 	 * @param licensePlate
 	 */
-	public void AddHibirdCar(String brand, int model, double basePrice, double cylinderCapacity, boolean isNew, double sCost, int sYear, double sMaxCoverage, double rCost, int rYear, double rGasLevels, double pCost, int pYear, double mileage, String licensePlate, String id) {
+	public void AddHybridCar(String brand, int model, double basePrice, double cylinderCapacity, boolean isNew, double sCost, int sYear, double sMaxCoverage, double rCost, int rYear, double rGasLevels, double pCost, int pYear, double mileage, String licensePlate, String id) {
 		double tankCapacity = 0, batteryDuration = 0;
 		int doorNum = 0, carType = 0, fuelType = 0,menu = 0;
 		boolean isTinted = true, hasFastCharger = false;

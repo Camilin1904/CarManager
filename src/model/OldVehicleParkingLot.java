@@ -19,7 +19,7 @@ public class OldVehicleParkingLot {
 
 	public int FindFirstemptyForLane(int lane){
 		int index = -1;
-		for (int counter=0; counter<10; counter++){
+		for (int counter=0; counter<10&&index==-1; counter++){
 			if (vehicles[counter][lane]==null){
 				index = counter;
 			}
@@ -81,7 +81,7 @@ public class OldVehicleParkingLot {
 	public String allToStringLane(int lane){
 		String message = "";
 		for (int counter=0; counter<10; counter++){
-			message += vehicles[counter][lane];
+			message += vehicles[counter][lane] + "\n";
 		}
 		return message;
 	}

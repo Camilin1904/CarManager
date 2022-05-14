@@ -30,7 +30,7 @@ public class Rtm extends Document {
 			sImage += image[0][counter];
 		}
 		for (int counter=2; counter<=IMAGE_SIZE; counter++){
-			sImage += image[IMAGE_SIZE-counter][IMAGE_SIZE-counter];
+			sImage += image[counter][IMAGE_SIZE-counter];
 		}
 		for (int counter=1; counter<IMAGE_SIZE; counter++){
 			sImage += image[0][counter];

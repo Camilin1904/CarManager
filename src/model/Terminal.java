@@ -123,7 +123,7 @@ public class Terminal {
 	}
 
 	/**
-	 * Method to add a hibrid car.
+	 * Method to add a hybrid car.
 	 * @param basePrice
 	 * @param brand
 	 * @param model
@@ -183,7 +183,7 @@ public class Terminal {
 			documents[2] = null;
 		}
 
-		vehicles.add(new Hibrid(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, cType, tankCapacity, hasFastCharger, batteryDuration, fType, documents, id));
+		vehicles.add(new Hybrid(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, cType, tankCapacity, hasFastCharger, batteryDuration, fType, documents, id));
 		if(model<=2015){
 			switch (model){
 				case(2015):
