@@ -242,7 +242,7 @@ public class CarManager {
 		for (int counter = 0; counter<10; counter++){
 			id += (int)(Math.random()*(10)); 	
 		}
-		System.out.println("This is the ID of the car: " + id);
+		System.out.println("\nThis is the ID of the car: " + id);
 		
 		
 		menu = 0;
@@ -529,21 +529,6 @@ public class CarManager {
 		
 		System.out.println(terminal.AddVehicle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, tankCapacity, bikeType, fuelType, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels, id));
 	}
-
-	public void AddPropertyCard() {
-		// TODO - implement CarManager.AddPropertyCard
-		throw new UnsupportedOperationException();
-	}
-
-	public void AddSoat() {
-		// TODO - implement CarManager.AddSoat
-		throw new UnsupportedOperationException();
-	}
-
-	public void AddRtm() {
-		// TODO - implement CarManager.AddRtm
-		throw new UnsupportedOperationException();
-	}
 	
 	/**
 	 * Prints a menu where te user chooses how to segregate the vehicles to be displayed to them
@@ -611,11 +596,6 @@ public class CarManager {
 
 	}
 
-	public void MoveVehiclesToParkingLot() {
-		// TODO - implement CarManager.MoveVehiclesToParkingLot
-		throw new UnsupportedOperationException();
-	}
-
 	/**
 	 * Fetches the sale price of the selected vehicle
 	 */
@@ -633,6 +613,9 @@ public class CarManager {
 
 	}
 
+	/**
+	 * Checks the state of the documents of a vehicle given the id of the vehicle
+	 */
 	public void DocumentsState(){
 		String id = "";
 		int vehicleId;
@@ -642,28 +625,34 @@ public class CarManager {
 			id = scan.nextLine();
 			id = id.toUpperCase();
 			vehicleId = terminal.FindVehicleIndex(id);
-			if(vehicleId>=0&&!id.equals("N")){
+			if(vehicleId>=0&&!id.equals("N")){//Checs the existence of the vehicle
 				System.out.println(terminal.getAllDocumentation(vehicleId));
 				id = "N";
 			}
-			else if (!id.equals("N")){
+			else if (!id.equals("N")){//Checks that the user didn't want to exit and thats why the last conditional didn't pass
 				System.out.println("Non-existent vehicle");
 			}
 		}while(!id.equals("N"));
 		
 	}
 
+	/**
+	 * Prints the visual represnetation of the parking lot
+	 */
 	public void DisplayParkingLot(){
 		System.out.println(terminal.DisplayParkingLot());
 	}
 
+	/**
+	 * Prints the information of the vehicles found in the parking lot in a given range of years.
+	 */
 	public void DisplayLotYearRange(){
 		int year1 = 0, year2 = 0;
 		System.out.println("Which starting year?: \n1) 2015 \n2) 2014 \n3) 2013 \n4) 2012 \n5) 2012>");
 		year1 = scan.nextInt()-1;
 		System.out.println("Which finishing year?: \n1) 2015 \n2) 2014 \n3) 2013 \n4) 2012 \n5) 2012>");
 		year2 = scan.nextInt()-1;
-		if(year1>year2){
+		if(year1>year2){//check in place for the chance the user inputs a finishing year higher than the starting year.
 			for (int counter=year2; counter<year1; counter++){
 				System.out.println(terminal.allToStringLane(counter));
 			}
@@ -678,17 +667,30 @@ public class CarManager {
 		}
 	}
 
+	/**
+	 * Prints the vehicles found in the <2012 column of the parking lot
+	 */
 	public void DisplayLotOldest(){
 		System.out.println(terminal.allToStringLane(4));
 	}
 
 
+	/**
+	 * Prints the vehicles found int the 2015 column of the parking lot
+	 */
 	public void DisplayLotNewest(){
 		System.out.println(terminal.allToStringLane(0));
 	}
 
+	/**
+	 * Prints the ocupation percentage of the parking lot, and informs when the parking lot id full.
+	 */
 	public void ShowLotPercentage(){
-		System.out.println("The ocupation percentage for the old vehicle parking lot is: " + terminal.getOcupationPercentage() + "%.");
+		double percentage = terminal.getOcupationPercentage();
+		System.out.println("\nThe ocupation percentage for the old vehicle parking lot is: " + percentage + "%.");
+		if (percentage==100){
+			System.out.println("The parking lot is full, it must be expanded");
+		}
 	}
 
 

@@ -34,8 +34,11 @@ public class Soat extends Document {
 		return sImage;
 	}
 
+	/**
+	 * toString
+	 */
 	public String toString(){
-		return super.toString() + "\nMAximum value covered: " +maxCoverageValue;
+		return super.toString() + "\nMAximum value covered: " +maxCoverageValue;//adds the exclusive atribute of soat to the toString() of Document
 	}
 
 }

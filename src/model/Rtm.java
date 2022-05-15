@@ -38,6 +38,9 @@ public class Rtm extends Document {
 		return sImage;
 	}
 
+	/**
+	 * adds the unique atribute of rtm to the toString() of Document
+	 */
 	@Override
 	public String toString() {
 		return super.toString() + "\nGas levels: " + gasLevels;

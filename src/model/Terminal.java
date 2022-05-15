@@ -2,6 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * Class that manages all of the objects in the program, a sort of terminal where all of the information is sent to the Ui
+ */
 public class Terminal {
 
 	/**
@@ -37,7 +40,7 @@ public class Terminal {
 	 */
 	public String AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, int carType, boolean hasFastCharger, double batteryDuration, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
 		String message = "";
-		int pos = 0;
+		int pos = 0, lane = 0;
 		Document[] documents = new Document[3];
 		CarType cType = null;
 		switch (carType){
@@ -49,19 +52,19 @@ public class Terminal {
 				break;
 		}
 
-		if(!isNew){
+		if(!isNew){//Checks if the vehicle is new to fill the data of the property card, which wouldn't exist if the vehicle were to be a new one
 			documents[0] = new PropertyCard(pCost, pYear);
 		}
 		else{
 			documents[0] = null;
 		}
-		if (sCost>0){
+		if (sCost>=0){//Checks fot the existance of a soat
 			documents[1] = new Soat(sCost, sYear, sMaxCoverage);
 		}
 		else{
 			documents[1] = null;
 		}
-		if (rCost>=0){
+		if (rCost>=0){//Checks for the existance of a Rtm
 			documents[2] = new Rtm(rCost, rYear, rGasLevels);
 		}
 		else{
@@ -70,53 +73,17 @@ public class Terminal {
 
 		vehicles.add(new Electric(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, cType, hasFastCharger, batteryDuration, documents, id));
 		
-		if(model<=2015){
-			switch (model){
-				case(2015):
-					pos = parkingLot.FindFirstemptyForLane(0);
-					if (pos>=0){
-						parkingLot.AddCar(0, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
-				case(2014):
-					pos = parkingLot.FindFirstemptyForLane(1);
-					if (pos>=0){
-						parkingLot.AddCar(1, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
-				case(2013):
-					pos = parkingLot.FindFirstemptyForLane(2);
-					if (pos>=0){
-						parkingLot.AddCar(2, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
-				case(2012):
-					pos = parkingLot.FindFirstemptyForLane(3);
-					if (pos>=0){
-						parkingLot.AddCar(3, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
-				default:
-					pos = parkingLot.FindFirstemptyForLane(4);
-					if (pos>=0){
-						parkingLot.AddCar(4, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
+		if(model<=2015){//checks if the vehicle has to be added to the parking lot
+			lane = Math.abs(model-2015);//checks the difference in years to 2015 to determine the lane it will be at
+			if (lane>3){// if the difference is higher than 3 years (2012) it means teh car is older than 2012, as such it will go in the last column
+				lane = 4;
+			}
+			pos = parkingLot.FindFirstemptyForLane(lane);
+			if (pos>=0){//Checks if there is an empty position
+				parkingLot.AddCar(lane, pos, vehicles.get(vehicles.size()-1));
+			}
+			else{
+				message = "Lane " + (lane+1) + " out of space";
 			}
 		}
 		return message;
@@ -140,7 +107,7 @@ public class Terminal {
 	 */
 	public String AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, int carType, double tankCapacity, boolean hasFastCharger, double batteryDuration, int fuelType, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
 		String message = "";
-		int pos = 0;
+		int pos = 0, lane = 0;
 		Document[] documents = new Document[3];
 		CarType cType = null;
 		FuelType fType = null;
@@ -184,53 +151,17 @@ public class Terminal {
 		}
 
 		vehicles.add(new Hybrid(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, cType, tankCapacity, hasFastCharger, batteryDuration, fType, documents, id));
-		if(model<=2015){
-			switch (model){
-				case(2015):
-					pos = parkingLot.FindFirstemptyForLane(0);
-					if (pos>=0){
-						parkingLot.AddCar(0, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
-				case(2014):
-					pos = parkingLot.FindFirstemptyForLane(1);
-					if (pos>=0){
-						parkingLot.AddCar(1, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
-				case(2013):
-					pos = parkingLot.FindFirstemptyForLane(2);
-					if (pos>=0){
-						parkingLot.AddCar(2, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
-				case(2012):
-					pos = parkingLot.FindFirstemptyForLane(3);
-					if (pos>=0){
-						parkingLot.AddCar(3, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
-				default:
-					pos = parkingLot.FindFirstemptyForLane(4);
-					if (pos>=0){
-						parkingLot.AddCar(4, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
+		if(model<=2015){//checks if the vehicle has to be added to the parking lot
+			lane = Math.abs(model-2015);//checks the difference in years to 2015 to determine the lane it will be at
+			if (lane>3){// if the difference is higher than 3 years (2012) it means teh car is older than 2012, as such it will go in the last column
+				lane = 4;
+			}
+			pos = parkingLot.FindFirstemptyForLane(lane);
+			if (pos>=0){
+				parkingLot.AddCar(lane, pos, vehicles.get(vehicles.size()-1));
+			}
+			else{
+				message = "Lane " + (lane+1) + " out of space";
 			}
 		}
 		return message;
@@ -252,7 +183,7 @@ public class Terminal {
 	 */
 	public String AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, int carType, double tankCapacity, int fuelType, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
 		String message = "";
-		int pos = 0;
+		int pos = 0, lane = 0;
 		Document[] documents = new Document[3];
 		CarType cType = null;
 		FuelType fType = null;
@@ -296,53 +227,17 @@ public class Terminal {
 		}
 
 		vehicles.add(new Fuel(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted,cType, tankCapacity, fType, documents, id));
-		if(model<=2015){
-			switch (model){
-				case(2015):
-					pos = parkingLot.FindFirstemptyForLane(0);
-					if (pos>=0){
-						parkingLot.AddCar(0, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
-				case(2014):
-					pos = parkingLot.FindFirstemptyForLane(1);
-					if (pos>=0){
-						parkingLot.AddCar(1, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
-				case(2013):
-					pos = parkingLot.FindFirstemptyForLane(2);
-					if (pos>=0){
-						parkingLot.AddCar(2, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
-				case(2012):
-					pos = parkingLot.FindFirstemptyForLane(3);
-					if (pos>=0){
-						parkingLot.AddCar(3, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
-				default:
-					pos = parkingLot.FindFirstemptyForLane(4);
-					if (pos>=0){
-						parkingLot.AddCar(4, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
+		if(model<=2015){//checks if the vehicle has to be added to the parking lot
+			lane = Math.abs(model-2015);//checks the difference in years to 2015 to determine the lane it will be at
+			if (lane>3){// if the difference is higher than 3 years (2012) it means teh car is older than 2012, as such it will go in the last column
+				lane = 4;
+			}
+			pos = parkingLot.FindFirstemptyForLane(lane);
+			if (pos>=0){
+				parkingLot.AddCar(lane, pos, vehicles.get(vehicles.size()-1));
+			}
+			else{
+				message = "Lane " + (lane+1) + " out of space";
 			}
 		}
 		return message;
@@ -377,7 +272,7 @@ public class Terminal {
 	 */
 	public String AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, double tankCapacity, int bikeType, int fuelType, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
 		String message = "";
-		int pos = 0;
+		int pos = 0, lane = 0;
 		Document[] documents = new Document[3];
 		BikeType bType = null;
 		FuelType fType = null;
@@ -429,53 +324,17 @@ public class Terminal {
 		}
 
 		vehicles.add(new Motorcycle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, tankCapacity, bType, fType, documents, id));
-		if(model<=2015){
-			switch (model){
-				case(2015):
-					pos = parkingLot.FindFirstemptyForLane(0);
-					if (pos>=0){
-						parkingLot.AddCar(0, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
-				case(2014):
-					pos = parkingLot.FindFirstemptyForLane(1);
-					if (pos>=0){
-						parkingLot.AddCar(1, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
-				case(2013):
-					pos = parkingLot.FindFirstemptyForLane(2);
-					if (pos>=0){
-						parkingLot.AddCar(2, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
-				case(2012):
-					pos = parkingLot.FindFirstemptyForLane(3);
-					if (pos>=0){
-						parkingLot.AddCar(3, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
-				default:
-					pos = parkingLot.FindFirstemptyForLane(4);
-					if (pos>=0){
-						parkingLot.AddCar(4, pos, vehicles.get(vehicles.size()-1));
-					}
-					else{
-						message = "Parking lot out of space";
-					}
-					break;
+		if(model<=2015){//checks if the vehicle has to be added to the parking lot
+			lane = Math.abs(model-2015);//checks the difference in years to 2015 to determine the lane it will be at
+			if (lane>3){// if the difference is higher than 3 years (2012) it means teh car is older than 2012, as such it will go in the last column
+				lane = 4;
+			}
+			pos = parkingLot.FindFirstemptyForLane(lane);
+			if (pos>=0){
+				parkingLot.AddCar(lane, pos, vehicles.get(vehicles.size()-1));
+			}
+			else{
+				message = "Lane " + (lane+1) + " out of space";
 			}
 		}
 		return message;
@@ -510,55 +369,9 @@ public class Terminal {
 	public double getSalePrice(int vehicleIndex){
 		return vehicles.get(vehicleIndex-1).SalePrice();
 	}
-	/**
-	 * 
-	 * @param vehicleIndex
-	 */
-	public void RegisterSale(int vehicleIndex) {
-		// TODO - implement Terminal.RegisterSale
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param vehicleIndex
-	 */
-	public void MoveVehicleToParkingLot(int vehicleIndex) {
-		// TODO - implement Terminal.MoveVehicleToParkingLot
-		throw new UnsupportedOperationException();
-	}
 
 	public String DisplayParkingLot() {
 		return parkingLot.toString();
-	}
-
-	public String DisplayDocuments() {
-		// TODO - implement Terminal.DisplayDocuments
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param year
-	 */
-	public String DisplayVehicleYearRange(int year) {
-		// TODO - implement Terminal.DisplayVehicleYearRange
-		throw new UnsupportedOperationException();
-	}
-
-	public String DisplayOldestVehicle() {
-		// TODO - implement Terminal.DisplayOldestVehicle
-		throw new UnsupportedOperationException();
-	}
-
-	public String DisplayNewestVehicle() {
-		// TODO - implement Terminal.DisplayNewestVehicle
-		throw new UnsupportedOperationException();
-	}
-
-	public double ParkingLotOcupationPercentage() {
-		// TODO - implement Terminal.ParkingLotOcupationPercentage
-		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -698,38 +511,6 @@ public class Terminal {
 	}
 
 	/**
-	 * 
-	 * @param propertyCardCost
-	 * @param propertyCardYear
-	 */
-	public void AddDocument(double propertyCardCost, int propertyCardYear) {
-		// TODO - implement Terminal.AddDocument
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param soatCost
-	 * @param soatYear
-	 * @param soatMaxCV
-	 */
-	public void AddDocument(double soatCost, int soatYear, double soatMaxCV) {
-		// TODO - implement Terminal.AddDocument
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param rtmCost
-	 * @param rtmYear
-	 * @param rtmGasLevels
-	 */
-	public void AddDocument(double rtmCost, int rtmYear, double[] rtmGasLevels) {
-		// TODO - implement Terminal.AddDocument
-		throw new UnsupportedOperationException();
-	}
-
-	/**
 	 * Returns the number of registered vehicle
 	 * @return the size of the ArrayList vehicles	
 	 */
@@ -737,10 +518,20 @@ public class Terminal {
 		return vehicles.size();
 	}
 
+	/**
+	 * gets the variable taht holds the answer to wheter the vehicle is new or not
+	 * @param index
+	 * @return isNew
+	 */
 	public boolean getIsNew(int index){
 		return vehicles.get(index).getIsNew();
 	}
 
+	/**
+	 * Searches for a vehicle given an index
+	 * @param id
+	 * @return the index of the vehice or -1 if teh vehicle does not exist
+	 */
 	public int FindVehicleIndex(String id){
 		for (int counter=0; counter<vehicles.size(); counter++){
 			if (id.equals(vehicles.get(counter).getId())){
@@ -750,14 +541,28 @@ public class Terminal {
 		return -1;
 	}
 
+	/**
+	 * gets all of the documentation for a given vehicle
+	 * @param vehicleIndex
+	 * @return a String containing all of the toString()s of a vehicle
+	 */
 	public String getAllDocumentation(int vehicleIndex){
 		return vehicles.get(vehicleIndex).ShowDocuments();
 	}
 
+	/**
+	 * Calls all of the methods toString() of a given column of the parking lot
+	 * @param lane
+	 * @return A String containing all of the information of the vehicles on the given lane
+	 */
 	public String allToStringLane(int lane){
 		return parkingLot.allToStringLane(lane);
 	}
 
+	/**
+	 * fetches the percentage the parking lot has been ocupied
+	 * @return the percentage th eparking lot has been ocupied
+	 */
 	public double getOcupationPercentage(){
 		return parkingLot.OcupationPercentage();
 	}

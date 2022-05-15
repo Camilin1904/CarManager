@@ -141,6 +141,10 @@ public abstract class Vehicle {
 		return price;
 	}
 
+	/**
+	 * fits all of the information of the documents into a String
+	 * @return a String containing all of the information for all of the documents
+	 */
 	public String ShowDocuments(){
 		String message = "";
 		message += "PropertyCard:\n\n";
@@ -166,6 +170,11 @@ public abstract class Vehicle {
 		}
 		return message;
 	}
+
+	/**
+	 * fetches the id of the vehicle
+	 * @return id
+	 */
 	public String getId() {
 		return id;
 	}
