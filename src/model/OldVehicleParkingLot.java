@@ -46,7 +46,7 @@ public class OldVehicleParkingLot {
 	 * @return a visual representation of the parking lot
 	 */
 	public String toString(){
-		String message = "  2015     2014     2013     2012     <2012   \n _______  _______  _______  _______  _______ \n";
+		String message = "  2014     2013     2012      2011    <2011   \n _______  _______  _______  _______  _______ \n";
 		for (int counter=0; counter<10; counter++){//goes over the rows
 			for (int counter2=0; counter2<4; counter2++){//goes over each individual line that is printed
 				for (int counter3=0; counter3<5; counter3++){//goes over the columns
@@ -67,7 +67,6 @@ public class OldVehicleParkingLot {
 								message += "|-O---O-|";
 								break;		
 						}
-						
 					}
 					else if (vehicles[counter][counter3] instanceof Motorcycle){//what to draw when there is a bike
 						switch (counter2){//checks whick line to draw depending on which ine it is on
@@ -89,7 +88,6 @@ public class OldVehicleParkingLot {
 				message += "\n";//skips over a line to continue
 			}
 		}
-		
 		return message;
 	}
 

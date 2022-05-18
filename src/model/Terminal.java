@@ -39,8 +39,6 @@ public class Terminal {
 	 * @param hasFastCharger
 	 */
 	public String AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, int carType, boolean hasFastCharger, double batteryDuration, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
-		String message = "";
-		int pos = 0, lane = 0;
 		Document[] documents = new Document[3];
 		CarType cType = null;
 		switch (carType){
@@ -73,20 +71,7 @@ public class Terminal {
 
 		vehicles.add(new Electric(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, cType, hasFastCharger, batteryDuration, documents, id));
 		
-		if(model<=2015){//checks if the vehicle has to be added to the parking lot
-			lane = Math.abs(model-2015);//checks the difference in years to 2015 to determine the lane it will be at
-			if (lane>3){// if the difference is higher than 3 years (2012) it means teh car is older than 2012, as such it will go in the last column
-				lane = 4;
-			}
-			pos = parkingLot.FindFirstemptyForLane(lane);
-			if (pos>=0){//Checks if there is an empty position
-				parkingLot.AddCar(lane, pos, vehicles.get(vehicles.size()-1));
-			}
-			else{
-				message = "Lane " + (lane+1) + " out of space";
-			}
-		}
-		return message;
+		return AddToParkingLot(vehicles.get(vehicles.size()-1));
 	}
 
 	/**
@@ -106,8 +91,6 @@ public class Terminal {
 	 * @param batteryDuration
 	 */
 	public String AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, int carType, double tankCapacity, boolean hasFastCharger, double batteryDuration, int fuelType, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
-		String message = "";
-		int pos = 0, lane = 0;
 		Document[] documents = new Document[3];
 		CarType cType = null;
 		FuelType fType = null;
@@ -151,20 +134,8 @@ public class Terminal {
 		}
 
 		vehicles.add(new Hybrid(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, cType, tankCapacity, hasFastCharger, batteryDuration, fType, documents, id));
-		if(model<=2015){//checks if the vehicle has to be added to the parking lot
-			lane = Math.abs(model-2015);//checks the difference in years to 2015 to determine the lane it will be at
-			if (lane>3){// if the difference is higher than 3 years (2012) it means teh car is older than 2012, as such it will go in the last column
-				lane = 4;
-			}
-			pos = parkingLot.FindFirstemptyForLane(lane);
-			if (pos>=0){
-				parkingLot.AddCar(lane, pos, vehicles.get(vehicles.size()-1));
-			}
-			else{
-				message = "Lane " + (lane+1) + " out of space";
-			}
-		}
-		return message;
+
+		return AddToParkingLot(vehicles.get(vehicles.size()-1));
 	}
 
 	/**
@@ -182,8 +153,6 @@ public class Terminal {
 	 * @param tankCapacity
 	 */
 	public String AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, int carType, double tankCapacity, int fuelType, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
-		String message = "";
-		int pos = 0, lane = 0;
 		Document[] documents = new Document[3];
 		CarType cType = null;
 		FuelType fType = null;
@@ -227,20 +196,7 @@ public class Terminal {
 		}
 
 		vehicles.add(new Fuel(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted,cType, tankCapacity, fType, documents, id));
-		if(model<=2015){//checks if the vehicle has to be added to the parking lot
-			lane = Math.abs(model-2015);//checks the difference in years to 2015 to determine the lane it will be at
-			if (lane>3){// if the difference is higher than 3 years (2012) it means teh car is older than 2012, as such it will go in the last column
-				lane = 4;
-			}
-			pos = parkingLot.FindFirstemptyForLane(lane);
-			if (pos>=0){
-				parkingLot.AddCar(lane, pos, vehicles.get(vehicles.size()-1));
-			}
-			else{
-				message = "Lane " + (lane+1) + " out of space";
-			}
-		}
-		return message;
+		return AddToParkingLot(vehicles.get(vehicles.size()-1));
 	}
 
 	/**
@@ -271,8 +227,6 @@ public class Terminal {
 	 * @param bikeType
 	 */
 	public String AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, double tankCapacity, int bikeType, int fuelType, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
-		String message = "";
-		int pos = 0, lane = 0;
 		Document[] documents = new Document[3];
 		BikeType bType = null;
 		FuelType fType = null;
@@ -324,14 +278,21 @@ public class Terminal {
 		}
 
 		vehicles.add(new Motorcycle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, tankCapacity, bType, fType, documents, id));
-		if(model<=2015){//checks if the vehicle has to be added to the parking lot
-			lane = Math.abs(model-2015);//checks the difference in years to 2015 to determine the lane it will be at
+		
+		return AddToParkingLot(vehicles.get(vehicles.size()-1));
+	}
+
+	public String AddToParkingLot(Vehicle vehicle){
+		int lane = 0, pos = 0;
+		String message = "";
+		if(vehicle.getModel()<=2015&&!vehicle.getIsNew()){//checks if the vehicle has to be added to the parking lot
+			lane = Math.abs(vehicle.getModel()-2014);//checks the difference in years to 2015 to determine the lane it will be at
 			if (lane>3){// if the difference is higher than 3 years (2012) it means teh car is older than 2012, as such it will go in the last column
 				lane = 4;
 			}
 			pos = parkingLot.FindFirstemptyForLane(lane);
 			if (pos>=0){
-				parkingLot.AddCar(lane, pos, vehicles.get(vehicles.size()-1));
+				parkingLot.AddCar(lane, pos, vehicle);
 			}
 			else{
 				message = "Lane " + (lane+1) + " out of space";
