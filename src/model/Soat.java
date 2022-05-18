@@ -38,7 +38,7 @@ public class Soat extends Document {
 	 * toString
 	 */
 	public String toString(){
-		return super.toString() + "\nMAximum value covered: " +maxCoverageValue;//adds the exclusive atribute of soat to the toString() of Document
+		return super.toString() + "\nMaximum value covered: " +maxCoverageValue;//adds the exclusive atribute of soat to the toString() of Document
 	}
 
 }
