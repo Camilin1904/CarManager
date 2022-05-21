@@ -34,7 +34,8 @@ public class CarManager {
 		CarManager main = new CarManager();
 		main.terminal = new Terminal();
 		main.today = LocalDate.now();
-		main.cases = new TestCases(main.terminal);
+		main.cases = new TestCases();
+		main.cases.CreateTestCases(main.terminal);
 		main.Menu();
 	}
 
@@ -517,10 +518,10 @@ public class CarManager {
 			System.out.println("\nInput the type of the vehicle: \n");
 			System.out.println(terminal.showBikeTypes());
 			bikeType = scan.nextInt();
-			if(bikeType!=1&&bikeType!=2){
+			if(bikeType<1&&bikeType>4){
 				System.out.println("Invalid input.");
 			}
-		}while(bikeType!=1&&bikeType!=2);
+		}while(bikeType<1&&bikeType>4);
 		System.out.println("\nInput the tank capacity of the vehicle:");
 		tankCapacity = scan.nextDouble();
 		scan.nextLine();
