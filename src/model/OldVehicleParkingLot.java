@@ -47,6 +47,7 @@ public class OldVehicleParkingLot {
 	 */
 	public String toString(){
 		String message = "  2014     2013     2012      2011    <2011   \n _______  _______  _______  _______  _______ \n";
+		String type = "";
 		for (int counter=0; counter<10; counter++){//goes over the rows
 			for (int counter2=0; counter2<4; counter2++){//goes over each individual line that is printed
 				for (int counter3=0; counter3<5; counter3++){//goes over the columns
@@ -61,7 +62,16 @@ public class OldVehicleParkingLot {
 								message += "|  __   |";
 								break;
 							case(1):
-								message += "|_|  |__|";
+								if (vehicles[counter][counter3] instanceof Electric){
+									type = "E";
+								}
+								if (vehicles[counter][counter3] instanceof Fuel){
+									type = "F";
+								}
+								if (vehicles[counter][counter3] instanceof Hybrid){
+									type = "H";
+								}
+								message += "|_|" + type +" |__|";
 								break;
 							case(2):
 								message += "|-O---O-|";
@@ -99,7 +109,9 @@ public class OldVehicleParkingLot {
 	public String allToStringLane(int lane){
 		String message = "";
 		for (int counter=0; counter<10; counter++){
-			message += vehicles[counter][lane] + "\n";
+			if (vehicles[counter][lane]!=null){
+				message += "\n" + (counter+1) + ").\n" + vehicles[counter][lane] + "\n";
+			}
 		}
 		return message;
 	}

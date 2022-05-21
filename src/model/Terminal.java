@@ -50,6 +50,15 @@ public class Terminal {
 				break;
 		}
 
+		documents = AddDocuments(isNew, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels);
+
+		vehicles.add(new Electric(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, cType, hasFastCharger, batteryDuration, documents, id));
+		
+		return AddToParkingLot(vehicles.get(vehicles.size()-1));
+	}
+
+	public Document[] AddDocuments(boolean isNew, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels){
+		Document[] documents = new Document[3];
 		if(!isNew){//Checks if the vehicle is new to fill the data of the property card, which wouldn't exist if the vehicle were to be a new one
 			documents[0] = new PropertyCard(pCost, pYear);
 		}
@@ -69,10 +78,9 @@ public class Terminal {
 			documents[2] = null;
 		}
 
-		vehicles.add(new Electric(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, cType, hasFastCharger, batteryDuration, documents, id));
-		
-		return AddToParkingLot(vehicles.get(vehicles.size()-1));
+		return documents;
 	}
+
 
 	/**
 	 * Method to add a hybrid car.
@@ -114,24 +122,7 @@ public class Terminal {
 				break;
 		}
 
-		if(!isNew){
-			documents[0] = new PropertyCard(pCost, pYear);
-		}
-		else{
-			documents[0] = null;
-		}
-		if (sCost>0){
-			documents[1] = new Soat(sCost, sYear, sMaxCoverage);
-		}
-		else{
-			documents[1] = null;
-		}
-		if (rCost>=0){
-			documents[2] = new Rtm(rCost, rYear, rGasLevels);
-		}
-		else{
-			documents[2] = null;
-		}
+		documents = AddDocuments(isNew, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels);
 
 		vehicles.add(new Hybrid(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, cType, tankCapacity, hasFastCharger, batteryDuration, fType, documents, id));
 
@@ -176,24 +167,7 @@ public class Terminal {
 				break;
 		}
 
-		if(!isNew){
-			documents[0] = new PropertyCard(pCost, pYear);
-		}
-		else{
-			documents[0] = null;
-		}
-		if (sCost>0){
-			documents[1] = new Soat(sCost, sYear, sMaxCoverage);
-		}
-		else{
-			documents[1] = null;
-		}
-		if (rCost>=0){
-			documents[2] = new Rtm(rCost, rYear, rGasLevels);
-		}
-		else{
-			documents[2] = null;
-		}
+		documents = AddDocuments(isNew, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels);
 
 		vehicles.add(new Fuel(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted,cType, tankCapacity, fType, documents, id));
 		return AddToParkingLot(vehicles.get(vehicles.size()-1));
@@ -256,26 +230,7 @@ public class Terminal {
 				break;
 		}
 
-		if(!isNew){
-			documents[0] = new PropertyCard(pCost, pYear);
-			if (sCost>0){
-				documents[1] = new Soat(sCost, sYear, sMaxCoverage);
-			}
-			else{
-				documents[1] = null;
-			}
-			if (rCost>0){
-				documents[2] = new Rtm(rCost, rYear, rGasLevels);
-			}
-			else{
-				documents[2] = null;
-			}
-		}
-		else{
-			for(int counter=0; counter<3; counter++){
-				documents[counter] = null;
-			}
-		}
+		documents = AddDocuments(isNew, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels);
 
 		vehicles.add(new Motorcycle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, tankCapacity, bType, fType, documents, id));
 		
@@ -285,7 +240,7 @@ public class Terminal {
 	public String AddToParkingLot(Vehicle vehicle){
 		int lane = 0, pos = 0;
 		String message = "";
-		if(vehicle.getModel()<=2015&&!vehicle.getIsNew()){//checks if the vehicle has to be added to the parking lot
+		if(vehicle.getModel()<=2014&&!vehicle.getIsNew()){//checks if the vehicle has to be added to the parking lot
 			lane = Math.abs(vehicle.getModel()-2014);//checks the difference in years to 2015 to determine the lane it will be at
 			if (lane>3){// if the difference is higher than 3 years (2012) it means teh car is older than 2012, as such it will go in the last column
 				lane = 4;
@@ -522,7 +477,7 @@ public class Terminal {
 
 	/**
 	 * fetches the percentage the parking lot has been ocupied
-	 * @return the percentage th eparking lot has been ocupied
+	 * @return the percentage the parking lot has been ocupied
 	 */
 	public double getOcupationPercentage(){
 		return parkingLot.OcupationPercentage();

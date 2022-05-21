@@ -108,26 +108,7 @@ public abstract class Vehicle {
 	 * toString
 	 */
 	public String toString(){
-		String pCard = "", soat = "", rtm = "";
-		if (documents[0] == null){//checks if the property card is null to avoid a null pointer exeption
-			pCard = "non-Existent";
-		}
-		else{
-			pCard = documents[0].DecodeImage();
-		}
-		if (documents[1] == null){
-			soat = "non-Existent";
-		}
-		else{
-			soat = documents[1].DecodeImage();
-		}
-		if (documents[2] == null){
-			rtm = "non-Existent";
-		}
-		else{
-			rtm = documents[2].DecodeImage();
-		}
-		return "\nId: " + id + "\nBrand: " + brand + "\nModel: " + model +"\nBase price: " + basePrice + "\nSale price: " + SalePrice() + "\nCylinder capacity: " + cylinderCapacity + "\nMileage: " + mileage + "\nIs it new?: " + isNew + "\nLicense plate: " + licensePlate + "\nPropertyCard id: " + pCard + "\nSoat id: " + soat + "\nTechnical mechanical revision id: " + rtm; 
+		return "\nId: " + id + "\nBrand: " + brand + "\nModel: " + model +"\nBase price: " + basePrice + "\nSale price: " + SalePrice() + "\nCylinder capacity: " + cylinderCapacity + "\nMileage: " + mileage + "\nIs it new?: " + isNew + "\nLicense plate: " + licensePlate + "\nDocuments: \n" + ShowDocuments(); 
 	}
 	/**
 	 * The first step in calculating the sale price of a vehicle: Checking whether the behicle has all of its documentation or not to determine if 500000 are added to the base price
@@ -147,28 +128,28 @@ public abstract class Vehicle {
 	 */
 	public String ShowDocuments(){
 		String message = "";
-		message += "PropertyCard:\n\n";
+		message += " PropertyCard:\n\n";
 		if(documents[0]!=null){
 			message += documents[0].toString();
 		}
 		else{
-			message += "Non existent property card.\n";
+			message += " Non existent property card.\n";
 		}
-		message += "\n\nSoat:\n\n";
+		message += "\n\n Soat:\n\n";
 		if(documents[1]!=null){
 			message += documents[1].toString();
 		}
 		else{
-			message += "Non existent soat.\n";
+			message += " Non existent soat.\n";
 		}
-		message += "\n\nRtm:\n\n";
+		message += "\n\n Rtm:\n\n";
 		if(documents[2]!=null){
 			message += documents[2].toString();
 		}
 		else{
-			message += "Non existent Rtm.\n";
+			message += " Non existent Rtm.\n";
 		}
-		return message;
+		return message + "\n";
 	}
 
 	/**

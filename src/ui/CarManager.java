@@ -17,7 +17,14 @@ public class CarManager {
 	 * Scanner
 	 */
 	private Scanner scan = new Scanner(System.in);
+	/**
+	 * the actual date
+	 */
 	private LocalDate today;
+	/**
+	 * the cases that come preloaded into the program
+	 */
+	private TestCases cases;
 
 	/**
 	 * Main
@@ -27,6 +34,7 @@ public class CarManager {
 		CarManager main = new CarManager();
 		main.terminal = new Terminal();
 		main.today = LocalDate.now();
+		main.cases = new TestCases(main.terminal);
 		main.Menu();
 	}
 
@@ -103,7 +111,7 @@ public class CarManager {
 					break;
 				case ("6"):
 					do{
-						System.out.println("\nWhatwould you like to do?: \n1) Look for the info of a vehicle in a given period of years. \n2) Look at the newest vehicles. \n3) Look at the oldest vehicles. \n4) Look ath the ocupation percentage of the parking lot. \nN) Exit");
+						System.out.println("\nWhat would you like to do?: \n1) Look for the info of the vehicles in a given period of years. \n2) Look at the newest vehicles. \n3) Look at the oldest vehicles. \n4) Look at the ocupation percentage of the parking lot. \nN) Exit");
 						menu = scan.nextLine();
 						menu = menu.toUpperCase();
 						switch (menu){
@@ -236,7 +244,6 @@ public class CarManager {
 			rCost = 0;
 			rYear = today.getYear();
 			rGasLevels = 0;
-			scan.nextLine();
 		}
 		
 		for (int counter = 0; counter<10; counter++){
@@ -648,22 +655,24 @@ public class CarManager {
 	 */
 	public void DisplayLotYearRange(){
 		int year1 = 0, year2 = 0;
-		System.out.println("Which starting year?: \n1) 2015 \n2) 2014 \n3) 2013 \n4) 2012 \n5) 2012>");
+		System.out.println("Which starting year?: \n1) 2014 \n2) 2013 \n3) 2012 \n4) 2011 \n5) <2011");
 		year1 = scan.nextInt()-1;
-		System.out.println("Which finishing year?: \n1) 2015 \n2) 2014 \n3) 2013 \n4) 2012 \n5) 2012>");
+		scan.nextLine();
+		System.out.println("Which finishing year?: \n1) 2014 \n2) 2013 \n3) 2012 \n4) 2011 \n5) <2011 ");
 		year2 = scan.nextInt()-1;
+		scan.nextLine();
 		if(year1>year2){//check in place for the chance the user inputs a finishing year higher than the starting year.
-			for (int counter=year2; counter<year1; counter++){
-				System.out.println(terminal.allToStringLane(counter));
+			for (int counter=year2; counter<=year1; counter++){
+				System.out.println("\n" + (2014-counter) + ":\n" +terminal.allToStringLane(counter));
 			}
 		}
-		else if(year1>year2){
-			for (int counter=year1; counter<year2; counter++){
-				System.out.println(terminal.allToStringLane(counter));
+		else if(year1<year2){
+			for (int counter=year1; counter<=year2; counter++){
+				System.out.println("\n" + (2014-counter) + ":\n" +terminal.allToStringLane(counter));
 			}
 		}
 		else{
-			System.out.println(terminal.allToStringLane(year1));
+			System.out.println("\n" + (2014-year1) + ":\n" +terminal.allToStringLane(year1));
 		}
 	}
 
@@ -672,7 +681,7 @@ public class CarManager {
 	 */
 	public void DisplayLotOldest(){
 		System.out.println(terminal.allToStringLane(4));
-	}
+	}	
 
 
 	/**

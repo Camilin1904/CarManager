@@ -29,11 +29,11 @@ public class Rtm extends Document {
 		for (int counter=0; counter<IMAGE_SIZE; counter++){
 			sImage += image[0][counter];
 		}
-		for (int counter=2; counter<=IMAGE_SIZE; counter++){
-			sImage += image[counter][IMAGE_SIZE-counter];
+		for (int counter=1; counter<IMAGE_SIZE; counter++){
+			sImage += image[counter][IMAGE_SIZE-counter-1];
 		}
 		for (int counter=1; counter<IMAGE_SIZE; counter++){
-			sImage += image[0][counter];
+			sImage += image[4][counter];
 		}
 		return sImage;
 	}
@@ -43,6 +43,8 @@ public class Rtm extends Document {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + "\nGas levels: " + gasLevels;
+		return super.toString() + "\n Gas levels: " + gasLevels;
 	}
+
+	
 }

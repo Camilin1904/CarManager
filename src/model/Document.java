@@ -57,7 +57,23 @@ public abstract class Document {
 	 * to String
 	 */
 	public String toString(){
-		return "\nID: " + DecodeImage() +"\nCost: " + cost + "\nYear: " + year;
+		return "\n ID: " + DecodeImage() +"\n Cost: " + cost + "\n Year: " + year;
+	}
+
+	/**
+	 * Method used to print a numeric matrix, currently unused
+	 * @param numbers
+	 * @return a String with the matrix
+	 */
+	public String printNumeric(int[][] numbers) {
+		String print ="";
+		for (int i=0; i< numbers.length; i++ ) { // filas numbers.length
+			for (int j = 0; j < numbers[0].length; j++) { //columnas numbers[0].length
+				print += numbers[i][j] + " ";
+			}
+			print += "\n";
+		}
+		return print;
 	}
 
 }
