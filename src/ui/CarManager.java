@@ -663,16 +663,16 @@ public class CarManager {
 		scan.nextLine();
 		if(year1>year2){//check in place for the chance the user inputs a finishing year higher than the starting year.
 			for (int counter=year2; counter<=year1; counter++){
-				System.out.println("\n" + (2014-counter) + ":\n" +terminal.allToStringLane(counter));
+				System.out.println("\n" + (2014-counter) + ":\n" +terminal.AllToStringLane(counter));
 			}
 		}
 		else if(year1<year2){
 			for (int counter=year1; counter<=year2; counter++){
-				System.out.println("\n" + (2014-counter) + ":\n" +terminal.allToStringLane(counter));
+				System.out.println("\n" + (2014-counter) + ":\n" +terminal.AllToStringLane(counter));
 			}
 		}
 		else{
-			System.out.println("\n" + (2014-year1) + ":\n" +terminal.allToStringLane(year1));
+			System.out.println("\n" + (2014-year1) + ":\n" +terminal.AllToStringLane(year1));
 		}
 	}
 
@@ -680,7 +680,7 @@ public class CarManager {
 	 * Prints the vehicles found in the <2012 column of the parking lot
 	 */
 	public void DisplayLotOldest(){
-		System.out.println(terminal.allToStringLane(4));
+		System.out.println(terminal.AllToStringLane(4));
 	}	
 
 
@@ -688,7 +688,7 @@ public class CarManager {
 	 * Prints the vehicles found int the 2015 column of the parking lot
 	 */
 	public void DisplayLotNewest(){
-		System.out.println(terminal.allToStringLane(0));
+		System.out.println(terminal.AllToStringLane(0));
 	}
 
 	/**

@@ -471,8 +471,8 @@ public class Terminal {
 	 * @param lane
 	 * @return A String containing all of the information of the vehicles on the given lane
 	 */
-	public String allToStringLane(int lane){
-		return parkingLot.allToStringLane(lane);
+	public String AllToStringLane(int lane){
+		return parkingLot.AllToStringLane(lane);
 	}
 
 	/**

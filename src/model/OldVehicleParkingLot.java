@@ -106,7 +106,7 @@ public class OldVehicleParkingLot {
 	 * @param lane
 	 * @return
 	 */
-	public String allToStringLane(int lane){
+	public String AllToStringLane(int lane){
 		String message = "";
 		for (int counter=0; counter<10; counter++){
 			if (vehicles[counter][lane]!=null){
