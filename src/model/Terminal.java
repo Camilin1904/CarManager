@@ -482,6 +482,10 @@ public class Terminal {
 	public double getOcupationPercentage(){
 		return parkingLot.OcupationPercentage();
 	}
+
+	public boolean IsEmpty(int lane){
+		return parkingLot.FindFirstemptyForLane(lane)==0;
+	}
 }
 
 //..*#%%%%%%%%%%%%%%%%%%%%%%%&&%%%%&&&&&&&%%##(((((((((((((((###%%%%%######(((///***,,,,,,,,,..,,,*/(*

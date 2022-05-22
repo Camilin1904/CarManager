@@ -681,7 +681,15 @@ public class CarManager {
 	 * Prints the vehicles found in the <2012 column of the parking lot
 	 */
 	public void DisplayLotOldest(){
-		System.out.println(terminal.AllToStringLane(4));
+		String message = "Empty parking lot";
+		boolean isEmpty = true;
+		for (int counter=4; counter>0&&isEmpty; counter--){
+			isEmpty = terminal.IsEmpty(counter);
+			if(!isEmpty){
+				message = terminal.AllToStringLane(counter);
+			}
+		}
+		System.out.println(message);
 	}	
 
 
@@ -689,7 +697,16 @@ public class CarManager {
 	 * Prints the vehicles found int the 2015 column of the parking lot
 	 */
 	public void DisplayLotNewest(){
-		System.out.println(terminal.AllToStringLane(0));
+		String message = "Empty parking lot";
+		boolean isEmpty = true;
+		for (int counter=0; counter<5&&isEmpty; counter++){
+			isEmpty = terminal.IsEmpty(counter);
+			if(!isEmpty){
+				message = terminal.AllToStringLane(counter);
+				break;
+			}
+		}
+		System.out.println(message);
 	}
 
 	/**
