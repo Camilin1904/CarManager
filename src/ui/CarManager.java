@@ -609,6 +609,7 @@ public class CarManager {
 	 */
 	public void getSalePrice(){
 		int vehicle = 0;
+		double extraDiscount = 0;
 		System.out.println("\nInput the vehicle: \n");
 		System.out.println(terminal.displayVehicles());
 		vehicle = scan.nextInt();
@@ -616,8 +617,11 @@ public class CarManager {
 			System.out.println("\nInvalid vehicle.");
 		}
 		else{
-			System.out.println("\nThe sale price for this vehicle is: " + terminal.getSalePrice(vehicle));
+			System.out.println("\nInput any aditional discount: \n");
+			extraDiscount = scan.nextDouble();
+			System.out.println("\nThe sale price for this vehicle is: " + (terminal.getSalePrice(vehicle)*(1-(extraDiscount/100))));
 		}
+		scan.nextLine();
 
 	}
 
