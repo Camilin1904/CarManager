@@ -50,12 +50,12 @@ public abstract class Car extends Vehicle {
 	 * Method to calculate the sale price, substracting a 10% if the car is used
 	 */
 	@Override
-	public double SalePrice() {
+	public double salePrice() {
 		double price = basePrice;
 		if(!isNew){
 			price *= 0.9;
 		}
-		return super.SalePrice()+price;
+		return super.salePrice()+price;
 	}
 
 }

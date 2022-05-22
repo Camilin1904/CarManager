@@ -7,7 +7,7 @@ public interface MotorBearer {
 	/**
 	 * calculates the consumption of gasoline of the cars that this aplies to.
 	 */
-	double GasolineConsumption();
+	double gasolineConsumption();
 
 	/**
 	 * returns the fule type.

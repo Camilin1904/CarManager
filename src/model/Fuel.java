@@ -37,7 +37,7 @@ public class Fuel extends Car implements MotorBearer {
 	 * The consumption of gasoline per kilometer for the Fuel powered Car
 	 */
 	@Override
-	public double GasolineConsumption() {
+	public double gasolineConsumption() {
 		return tankCapacity*(cylinderCapacity/150);
 	}
 
@@ -53,6 +53,6 @@ public class Fuel extends Car implements MotorBearer {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + "\nTank capacity: " + tankCapacity + "\nFuel type: " + fuelType;
+		return super.toString() + "\nTank capacity: " + tankCapacity + "\nFuel type: " + fuelType + "\nGasoline consumption: " + gasolineConsumption();
 	}
 }

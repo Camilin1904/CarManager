@@ -39,8 +39,8 @@ public class Electric extends Car implements BatteryBearer {
 	 * The price at which the Electric car will be sold, it takes into acount the 20% increment in price it gets for being an Electric Car
 	 */
 	@Override
-	public double SalePrice() {
-		double price = super.SalePrice();
+	public double salePrice() {
+		double price = super.salePrice();
 		price += 0.20*basePrice;
 		return price;
 	}
@@ -49,7 +49,7 @@ public class Electric extends Car implements BatteryBearer {
 	 * The consumption of battery per kilometer of the Car
 	 */
 	@Override
-	public double BatteryConsumption() {
+	public double batteryConsumption() {
 		double consumption = 0;
 		if(hasFastCharger){
 			consumption = (batteryDuration+13)*(cylinderCapacity/100);
@@ -65,7 +65,7 @@ public class Electric extends Car implements BatteryBearer {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + "\nBattery duration: " + batteryDuration + "\nBattery consumption: " + BatteryConsumption() + "\nDoes it have a fast charger?: " + hasFastCharger;
+		return super.toString() + "\nBattery duration: " + batteryDuration + "\nBattery consumption: " + batteryConsumption() + "\nDoes it have a fast charger?: " + hasFastCharger;
 	}
 
 }

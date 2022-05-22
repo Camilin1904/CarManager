@@ -24,7 +24,7 @@ public class Rtm extends Document {
 	/**
 	 * Decodes the image by moving along the x axis, then moves backwards on the x axis whilemoving forwards on the y axis, the movex along th x axis again
 	 */
-	public String DecodeImage() {
+	public String decodeImage() {
 		String sImage = "";
 		for (int counter=0; counter<IMAGE_SIZE; counter++){
 			sImage += image[0][counter];

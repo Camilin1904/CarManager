@@ -108,13 +108,13 @@ public abstract class Vehicle {
 	 * toString
 	 */
 	public String toString(){
-		return "\nId: " + id + "\nBrand: " + brand + "\nModel: " + model +"\nBase price: " + basePrice + "\nSale price: " + SalePrice() + "\nCylinder capacity: " + cylinderCapacity + "\nMileage: " + mileage + "\nIs it new?: " + isNew + "\nLicense plate: " + licensePlate + "\nDocuments: \n" + ShowDocuments(); 
+		return "\nId: " + id + "\nBrand: " + brand + "\nModel: " + model +"\nBase price: " + basePrice + "\nSale price: " + salePrice() + "\nCylinder capacity: " + cylinderCapacity + "\nMileage: " + mileage + "\nIs it new?: " + isNew + "\nLicense plate: " + licensePlate + "\nDocuments: \n" + showDocuments(); 
 	}
 	/**
 	 * The first step in calculating the sale price of a vehicle: Checking whether the behicle has all of its documentation or not to determine if 500000 are added to the base price
 	 * @return price
 	 */
-	public double SalePrice(){
+	public double salePrice(){
 		double price = 0;
 		if ((documents[1]==null||documents[1].getYear()!=today.getYear())||(documents[2]==null||documents[2].getYear()!=today.getYear())){
 			price += 500000;
@@ -126,7 +126,7 @@ public abstract class Vehicle {
 	 * fits all of the information of the documents into a String
 	 * @return a String containing all of the information for all of the documents
 	 */
-	public String ShowDocuments(){
+	public String showDocuments(){
 		String message = "";
 		message += " PropertyCard:\n\n";
 		if(documents[0]!=null){

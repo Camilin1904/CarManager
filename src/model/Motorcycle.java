@@ -40,7 +40,7 @@ public class Motorcycle extends Vehicle implements MotorBearer {
 	/**
 	 * Calculates the sale price of the Bike
 	 */
-	public double SalePrice(){
+	public double salePrice(){
 
 		double price = basePrice;
 
@@ -50,13 +50,13 @@ public class Motorcycle extends Vehicle implements MotorBearer {
 		else{
 			price *= 0.98;
 		}
-		return price + super.SalePrice();
+		return price + super.salePrice();
 	}
 
 	/**
 	 * claculates the gasoline consumption per kilometer of the bike
 	 */
-	public double GasolineConsumption(){
+	public double gasolineConsumption(){
 		return tankCapacity*(cylinderCapacity/75);
 	}
 	/**
@@ -71,6 +71,6 @@ public class Motorcycle extends Vehicle implements MotorBearer {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + "\nTank capacity: " + tankCapacity + "\nBike Type: " + bikeType;
+		return super.toString() + "\nTank capacity: " + tankCapacity + "\nBike Type: " + bikeType + "\nGasoline Consumption: " + gasolineConsumption();
 	}
 }

@@ -49,7 +49,7 @@ public class Hybrid extends Car implements BatteryBearer, MotorBearer {
 	/**
 	 * Calculates the sale price taking into acount the increment in price for this being a Hybrid Car
 	 */
-	public double SalePrice(){
+	public double salePrice(){
 		double price = basePrice;
 		price += 0.15*basePrice;
 		return price;
@@ -59,14 +59,14 @@ public class Hybrid extends Car implements BatteryBearer, MotorBearer {
 	 * Calculates the consumption of gasoline per kilometer of the Car
 	 */
 	@Override
-	public double GasolineConsumption(){
+	public double gasolineConsumption(){
 		return tankCapacity*(cylinderCapacity/180);
 	}
 
 	/**
 	 * Calculates the consumption of battery per kilometer of the Car
 	 */
-	public double BatteryConsumption(){
+	public double batteryConsumption(){
 		double consumption = 0;
 		if (hasFastCharger){
 			consumption = batteryDuration*(cylinderCapacity/200);
@@ -89,7 +89,7 @@ public class Hybrid extends Car implements BatteryBearer, MotorBearer {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + "\nTank capacity: " + tankCapacity + "\nFuel type: " + fuelType + "\nBattery duration: " + batteryDuration + "\nDoes it have a fast charger?: " + hasFastCharger;
+		return super.toString() + "\nTank capacity: " + tankCapacity + "\nFuel type: " + fuelType + "\nBattery duration: " + batteryDuration + "\nDoes it have a fast charger?: " + hasFastCharger + "\nBattery Consumption: " + batteryConsumption() + "\nGasoline Consumption: " + gasolineConsumption();
 	}
 
 }

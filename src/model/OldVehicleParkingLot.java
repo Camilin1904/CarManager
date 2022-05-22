@@ -22,7 +22,7 @@ public class OldVehicleParkingLot {
 	 * @param lane
 	 * @return the empty porsition index or -1 in case of none
 	 */
-	public int FindFirstemptyForLane(int lane){
+	public int findFirstemptyForLane(int lane){
 		int index = -1;
 		for (int counter=0; counter<10&&index==-1; counter++){
 			if (vehicles[counter][lane]==null){
@@ -37,7 +37,7 @@ public class OldVehicleParkingLot {
 	 * @param pos
 	 * @param vehicle
 	 */
-	public void AddCar(int lane, int pos, Vehicle vehicle){
+	public void addCar(int lane, int pos, Vehicle vehicle){
 		vehicles[pos][lane] = vehicle;
 	}
 
@@ -106,7 +106,7 @@ public class OldVehicleParkingLot {
 	 * @param lane
 	 * @return
 	 */
-	public String AllToStringLane(int lane){
+	public String allToStringLane(int lane){
 		String message = "";
 		for (int counter=0; counter<10; counter++){
 			if (vehicles[counter][lane]!=null){
@@ -120,10 +120,10 @@ public class OldVehicleParkingLot {
 	 * how much of the parking lot is ocupied
 	 * @return The percentage of ocupation
 	 */
-	public double OcupationPercentage(){
+	public double ocupationPercentage(){
 		int ocupation = 0, holder = 0;
 		for (int counter=0; counter<5; counter++){
-			holder = FindFirstemptyForLane(counter);
+			holder = findFirstemptyForLane(counter);
 			if (holder<0){
 				holder = 10;
 			}
@@ -150,3 +150,4 @@ public class OldVehicleParkingLot {
 |       |
  -------
 */
+

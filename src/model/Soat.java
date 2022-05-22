@@ -23,7 +23,7 @@ public class Soat extends Document {
 	/**
 	 * Decodes the id of the image moving along the y axis until the end, the moving in teh x axis
 	 */
-	public String DecodeImage() {
+	public String decodeImage() {
 		String sImage = "";
 		for (int counter=0; counter<IMAGE_SIZE; counter++){
 			sImage += image[counter][0];

@@ -65,15 +65,15 @@ public class CarManager {
 									menu = menu.toUpperCase();
 									switch (menu){
 										case ("1"):
-											AddVehicle(Integer.parseInt(menu));
+											addVehicle(Integer.parseInt(menu));
 											exit = false;
 											break;
 										case("2"):
-											AddVehicle(Integer.parseInt(menu));
+											addVehicle(Integer.parseInt(menu));
 											exit = false;
 											break;
 										case("3"):
-											AddVehicle(Integer.parseInt(menu));
+											addVehicle(Integer.parseInt(menu));
 											exit = false;
 											break;
 										case("N"):
@@ -86,7 +86,7 @@ public class CarManager {
 								exit = false;
 								break;
 							case("2"):
-								AddVehicle(4);
+								addVehicle(4);
 								exit = false;
 								break;
 							case("N"):
@@ -102,13 +102,13 @@ public class CarManager {
 					getSalePrice();
 					break;
 				case("3"):
-					DisplayVehicles();
+					displayVehicles();
 					break;
 				case ("4"):
-					DocumentsState();
+					documentsState();
 					break;
 				case ("5"):
-					DisplayParkingLot();
+					displayParkingLot();
 					break;
 				case ("6"):
 					do{
@@ -117,19 +117,19 @@ public class CarManager {
 						menu = menu.toUpperCase();
 						switch (menu){
 							case ("1"):
-								DisplayLotYearRange();
+								displayLotYearRange();
 								exit = false;
 								break;
 							case("2"):
-								DisplayLotNewest();
+								displayLotNewest();
 								exit = false;
 								break;
 							case("3"):
-								DisplayLotOldest();
+								displayLotOldest();
 								exit = false;
 								break;
 							case ("4"):
-								ShowLotPercentage();
+								showLotPercentage();
 								exit = false;
 								break;
 							case("N"):
@@ -156,7 +156,7 @@ public class CarManager {
 	 * Registers the general data all vehicles have
 	 * @param vehicleType
 	 */
-	public void AddVehicle(int vehicleType){
+	public void addVehicle(int vehicleType){
 		double basePrice = 0, mileage = 0, cylinderCapacity = 0, sCost = -1, sMaxCoverage = 0, pCost = -1, rCost = -1, rGasLevels = 0;
 		int sYear = 0, pYear = 0, rYear = 0, model = 0, menu = 0;
 		String brand = "", licensePlate = "", id = "";
@@ -257,16 +257,16 @@ public class CarManager {
 		
 		switch(vehicleType){//Decides which vehicle type to create depending on what the user wants
 			case(1):
-				AddFuelCar(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate, id);
+				addFuelCar(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate, id);
 				break;
 			case(2):
-				AddHybridCar(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate, id);
+				addHybridCar(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate, id);
 				break;
 			case(3):
-				AddElectricCar(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate, id);
+				addElectricCar(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate, id);
 				break;
 			case(4):
-				AddBike(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate, id);
+				addBike(brand, model, basePrice, cylinderCapacity, isNew, sCost, sYear, sMaxCoverage, rCost, rYear, rGasLevels, pCost, pYear, mileage, licensePlate, id);
 				break;
 		}
 		
@@ -290,7 +290,7 @@ public class CarManager {
 	 * @param mileage
 	 * @param licensePlate
 	 */
-	public void AddFuelCar(String brand, int model, double basePrice, double cylinderCapacity, boolean isNew, double sCost, int sYear, double sMaxCoverage, double rCost, int rYear, double rGasLevels, double pCost, int pYear, double mileage, String licensePlate, String id) {
+	public void addFuelCar(String brand, int model, double basePrice, double cylinderCapacity, boolean isNew, double sCost, int sYear, double sMaxCoverage, double rCost, int rYear, double rGasLevels, double pCost, int pYear, double mileage, String licensePlate, String id) {
 		double tankCapacity = 0;
 		int doorNum = 0, carType = 0, fuelType = 0, menu = 0;
 		boolean isTinted = true;
@@ -335,7 +335,7 @@ public class CarManager {
 			}
 		}while(menu!=1&&menu!=2);
 		
-		System.out.println(terminal.AddVehicle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, carType, tankCapacity, fuelType, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels, id));//Adds fuel car
+		System.out.println(terminal.addVehicle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, carType, tankCapacity, fuelType, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels, id));//Adds fuel car
 	}
 
 	/**
@@ -356,7 +356,7 @@ public class CarManager {
 	 * @param mileage
 	 * @param licensePlate
 	 */
-	public void AddElectricCar(String brand, int model, double basePrice, double cylinderCapacity, boolean isNew, double sCost, int sYear, double sMaxCoverage, double rCost, int rYear, double rGasLevels, double pCost, int pYear, double mileage, String licensePlate, String id) {
+	public void addElectricCar(String brand, int model, double basePrice, double cylinderCapacity, boolean isNew, double sCost, int sYear, double sMaxCoverage, double rCost, int rYear, double rGasLevels, double pCost, int pYear, double mileage, String licensePlate, String id) {
 		double batteryDuration = 0;
 		int doorNum = 0, carType = 0, menu = 0;
 		boolean isTinted = true, hasFastCharger = false;
@@ -406,7 +406,7 @@ public class CarManager {
 			}
 		}while(menu!=1&&menu!=2);
 		
-		System.out.println(terminal.AddVehicle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, carType, hasFastCharger, batteryDuration, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels, id));
+		System.out.println(terminal.addVehicle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, carType, hasFastCharger, batteryDuration, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels, id));
 	}
 
 	/**
@@ -427,7 +427,7 @@ public class CarManager {
 	 * @param mileage
 	 * @param licensePlate
 	 */
-	public void AddHybridCar(String brand, int model, double basePrice, double cylinderCapacity, boolean isNew, double sCost, int sYear, double sMaxCoverage, double rCost, int rYear, double rGasLevels, double pCost, int pYear, double mileage, String licensePlate, String id) {
+	public void addHybridCar(String brand, int model, double basePrice, double cylinderCapacity, boolean isNew, double sCost, int sYear, double sMaxCoverage, double rCost, int rYear, double rGasLevels, double pCost, int pYear, double mileage, String licensePlate, String id) {
 		double tankCapacity = 0, batteryDuration = 0;
 		int doorNum = 0, carType = 0, fuelType = 0,menu = 0;
 		boolean isTinted = true, hasFastCharger = false;
@@ -489,7 +489,7 @@ public class CarManager {
 			}
 		}while(menu!=1&&menu!=2);
 
-		System.out.println(terminal.AddVehicle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, carType, tankCapacity, hasFastCharger, batteryDuration, fuelType, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels, id));
+		System.out.println(terminal.addVehicle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, carType, tankCapacity, hasFastCharger, batteryDuration, fuelType, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels, id));
 	}
 
 	/**
@@ -510,7 +510,7 @@ public class CarManager {
 	 * @param mileage
 	 * @param licensePlate
 	 */
-	public void AddBike(String brand, int model, double basePrice, double cylinderCapacity, boolean isNew, double sCost, int sYear, double sMaxCoverage, double rCost, int rYear, double rGasLevels, double pCost, int pYear, double mileage, String licensePlate, String id) {
+	public void addBike(String brand, int model, double basePrice, double cylinderCapacity, boolean isNew, double sCost, int sYear, double sMaxCoverage, double rCost, int rYear, double rGasLevels, double pCost, int pYear, double mileage, String licensePlate, String id) {
 		double tankCapacity = 0;
 		int fuelType = 0, bikeType = 0;
 
@@ -535,13 +535,13 @@ public class CarManager {
 			}
 		}while(fuelType!=1&&fuelType!=2&&fuelType!=3);
 		
-		System.out.println(terminal.AddVehicle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, tankCapacity, bikeType, fuelType, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels, id));
+		System.out.println(terminal.addVehicle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, tankCapacity, bikeType, fuelType, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels, id));
 	}
 	
 	/**
 	 * Prints a menu where te user chooses how to segregate the vehicles to be displayed to them
 	 */
-	public void DisplayVehicles() {
+	public void displayVehicles() {
 		int menu = 0;
 		do{
 		System.out.println("\nUnder which clasification would you like to display the vehicles?: \n1) Vehicle type. \n2) Fuel type \n3) New vehicles \n4) Used vehicles");
@@ -563,10 +563,10 @@ public class CarManager {
 				}while(menu<=0&&menu>3);
 				switch (menu){
 					case (1):
-						System.out.println(terminal.DisplayCars());
+						System.out.println(terminal.displayCars());
 						break;
 					case (2):
-						System.out.println(terminal.DisplayBikes());
+						System.out.println(terminal.displayBikes());
 						break;
 				}
 				break;
@@ -582,23 +582,23 @@ public class CarManager {
 				}while(menu<=0&&menu>3);
 				switch (menu){
 					case (1):
-						System.out.println(terminal.DisplayDiesel());
+						System.out.println(terminal.displayDiesel());
 						break;
 					case (2):
-						System.out.println(terminal.DisplayExtra());
+						System.out.println(terminal.displayExtra());
 						break;
 					case (3):
-						System.out.println(terminal.DisplayGasoline());
+						System.out.println(terminal.displayGasoline());
 						break;
 					case (4):
-						System.out.println(terminal.DisplayElectricity());
+						System.out.println(terminal.displayElectricity());
 				}
 				break;
 			case(3):
-				System.out.println(terminal.DisplayNew());
+				System.out.println(terminal.displayNew());
 				break;
 			case(4):
-				System.out.println(terminal.DisplayUsed());
+				System.out.println(terminal.displayUsed());
 				break;
 		}
 
@@ -610,7 +610,7 @@ public class CarManager {
 	public void getSalePrice(){
 		int vehicle = 0;
 		System.out.println("\nInput the vehicle: \n");
-		System.out.println(terminal.DisplayVehicles());
+		System.out.println(terminal.displayVehicles());
 		vehicle = scan.nextInt();
 		if(vehicle<=0&&vehicle>terminal.getNumVehicles()){
 			System.out.println("\nInvalid vehicle.");
@@ -624,7 +624,7 @@ public class CarManager {
 	/**
 	 * Checks the state of the documents of a vehicle given the id of the vehicle
 	 */
-	public void DocumentsState(){
+	public void documentsState(){
 		String id = "";
 		int vehicleId;
 
@@ -632,7 +632,7 @@ public class CarManager {
 			System.out.println("\nInput the id of the vehicle(Or exit inputing N): ");
 			id = scan.nextLine();
 			id = id.toUpperCase();
-			vehicleId = terminal.FindVehicleIndex(id);
+			vehicleId = terminal.findVehicleIndex(id);
 			if(vehicleId>=0&&!id.equals("N")){//Checs the existence of the vehicle
 				System.out.println(terminal.getAllDocumentation(vehicleId));
 				id = "N";
@@ -647,14 +647,14 @@ public class CarManager {
 	/**
 	 * Prints the visual represnetation of the parking lot
 	 */
-	public void DisplayParkingLot(){
-		System.out.println(terminal.DisplayParkingLot());
+	public void displayParkingLot(){
+		System.out.println(terminal.displayParkingLot());
 	}
 
 	/**
 	 * Prints the information of the vehicles found in the parking lot in a given range of years.
 	 */
-	public void DisplayLotYearRange(){
+	public void displayLotYearRange(){
 		int year1 = 0, year2 = 0;
 		System.out.println("Which starting year?: \n1) 2014 \n2) 2013 \n3) 2012 \n4) 2011 \n5) <2011");
 		year1 = scan.nextInt()-1;
@@ -664,29 +664,29 @@ public class CarManager {
 		scan.nextLine();
 		if(year1>year2){//check in place for the chance the user inputs a finishing year higher than the starting year.
 			for (int counter=year2; counter<=year1; counter++){
-				System.out.println("\n" + (2014-counter) + ":\n" +terminal.AllToStringLane(counter));
+				System.out.println("\n" + (2014-counter) + ":\n" +terminal.allToStringLane(counter));
 			}
 		}
 		else if(year1<year2){
 			for (int counter=year1; counter<=year2; counter++){
-				System.out.println("\n" + (2014-counter) + ":\n" +terminal.AllToStringLane(counter));
+				System.out.println("\n" + (2014-counter) + ":\n" +terminal.allToStringLane(counter));
 			}
 		}
 		else{
-			System.out.println("\n" + (2014-year1) + ":\n" +terminal.AllToStringLane(year1));
+			System.out.println("\n" + (2014-year1) + ":\n" +terminal.allToStringLane(year1));
 		}
 	}
 
 	/**
 	 * Prints the vehicles found in the <2012 column of the parking lot
 	 */
-	public void DisplayLotOldest(){
+	public void displayLotOldest(){
 		String message = "Empty parking lot";
 		boolean isEmpty = true;
 		for (int counter=4; counter>0&&isEmpty; counter--){
 			isEmpty = terminal.IsEmpty(counter);
 			if(!isEmpty){
-				message = terminal.AllToStringLane(counter);
+				message = terminal.allToStringLane(counter);
 			}
 		}
 		System.out.println(message);
@@ -696,13 +696,13 @@ public class CarManager {
 	/**
 	 * Prints the vehicles found int the 2015 column of the parking lot
 	 */
-	public void DisplayLotNewest(){
+	public void displayLotNewest(){
 		String message = "Empty parking lot";
 		boolean isEmpty = true;
 		for (int counter=0; counter<5&&isEmpty; counter++){
 			isEmpty = terminal.IsEmpty(counter);
 			if(!isEmpty){
-				message = terminal.AllToStringLane(counter);
+				message = terminal.allToStringLane(counter);
 				break;
 			}
 		}
@@ -712,7 +712,7 @@ public class CarManager {
 	/**
 	 * Prints the ocupation percentage of the parking lot, and informs when the parking lot id full.
 	 */
-	public void ShowLotPercentage(){
+	public void showLotPercentage(){
 		double percentage = terminal.getOcupationPercentage();
 		System.out.println("\nThe ocupation percentage for the old vehicle parking lot is: " + percentage + "%.");
 		if (percentage==100){

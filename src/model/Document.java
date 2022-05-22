@@ -26,7 +26,7 @@ public abstract class Document {
 	 * Method in charge of decoding tha id from the image
 	 * @return Id
 	 */
-	public abstract String DecodeImage();
+	public abstract String decodeImage();
 
 	/**
 	 * Builder
@@ -57,7 +57,7 @@ public abstract class Document {
 	 * to String
 	 */
 	public String toString(){
-		return "\n ID: " + DecodeImage() +"\n Cost: " + cost + "\n Year: " + year;
+		return "\n ID: " + decodeImage() +"\n Cost: " + cost + "\n Year: " + year;
 	}
 
 	/**

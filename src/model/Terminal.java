@@ -38,7 +38,7 @@ public class Terminal {
 	 * @param carType
 	 * @param hasFastCharger
 	 */
-	public String AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, int carType, boolean hasFastCharger, double batteryDuration, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
+	public String addVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, int carType, boolean hasFastCharger, double batteryDuration, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
 		Document[] documents = new Document[3];
 		CarType cType = null;
 		switch (carType){
@@ -50,14 +50,14 @@ public class Terminal {
 				break;
 		}
 
-		documents = AddDocuments(isNew, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels);
+		documents = addDocuments(isNew, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels);
 
 		vehicles.add(new Electric(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, cType, hasFastCharger, batteryDuration, documents, id));
 		
-		return AddToParkingLot(vehicles.get(vehicles.size()-1));
+		return addToParkingLot(vehicles.get(vehicles.size()-1));
 	}
 
-	public Document[] AddDocuments(boolean isNew, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels){
+	public Document[] addDocuments(boolean isNew, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels){
 		Document[] documents = new Document[3];
 		if(!isNew){//Checks if the vehicle is new to fill the data of the property card, which wouldn't exist if the vehicle were to be a new one
 			documents[0] = new PropertyCard(pCost, pYear);
@@ -98,7 +98,7 @@ public class Terminal {
 	 * @param hasFastCharger
 	 * @param batteryDuration
 	 */
-	public String AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, int carType, double tankCapacity, boolean hasFastCharger, double batteryDuration, int fuelType, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
+	public String addVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, int carType, double tankCapacity, boolean hasFastCharger, double batteryDuration, int fuelType, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
 		Document[] documents = new Document[3];
 		CarType cType = null;
 		FuelType fType = null;
@@ -122,11 +122,11 @@ public class Terminal {
 				break;
 		}
 
-		documents = AddDocuments(isNew, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels);
+		documents = addDocuments(isNew, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels);
 
 		vehicles.add(new Hybrid(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted, cType, tankCapacity, hasFastCharger, batteryDuration, fType, documents, id));
 
-		return AddToParkingLot(vehicles.get(vehicles.size()-1));
+		return addToParkingLot(vehicles.get(vehicles.size()-1));
 	}
 
 	/**
@@ -143,7 +143,7 @@ public class Terminal {
 	 * @param carType
 	 * @param tankCapacity
 	 */
-	public String AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, int carType, double tankCapacity, int fuelType, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
+	public String addVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, int doorNum, boolean isTinted, int carType, double tankCapacity, int fuelType, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
 		Document[] documents = new Document[3];
 		CarType cType = null;
 		FuelType fType = null;
@@ -167,10 +167,10 @@ public class Terminal {
 				break;
 		}
 
-		documents = AddDocuments(isNew, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels);
+		documents = addDocuments(isNew, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels);
 
 		vehicles.add(new Fuel(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, doorNum, isTinted,cType, tankCapacity, fType, documents, id));
-		return AddToParkingLot(vehicles.get(vehicles.size()-1));
+		return addToParkingLot(vehicles.get(vehicles.size()-1));
 	}
 
 	/**
@@ -200,7 +200,7 @@ public class Terminal {
 	 * @param tankCapacity
 	 * @param bikeType
 	 */
-	public String AddVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, double tankCapacity, int bikeType, int fuelType, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
+	public String addVehicle(double basePrice, String brand, int model, double cylinderCapacity, double mileage, boolean isNew, String licensePlate, double tankCapacity, int bikeType, int fuelType, double sCost, int sYear, double  sMaxCoverage, double pCost, int pYear, double rCost, int rYear, double rGasLevels, String id) {
 		Document[] documents = new Document[3];
 		BikeType bType = null;
 		FuelType fType = null;
@@ -230,14 +230,14 @@ public class Terminal {
 				break;
 		}
 
-		documents = AddDocuments(isNew, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels);
+		documents = addDocuments(isNew, sCost, sYear, sMaxCoverage, pCost, pYear, rCost, rYear, rGasLevels);
 
 		vehicles.add(new Motorcycle(basePrice, brand, model, cylinderCapacity, mileage, isNew, licensePlate, tankCapacity, bType, fType, documents, id));
 		
-		return AddToParkingLot(vehicles.get(vehicles.size()-1));
+		return addToParkingLot(vehicles.get(vehicles.size()-1));
 	}
 
-	public String AddToParkingLot(Vehicle vehicle){
+	public String addToParkingLot(Vehicle vehicle){
 		int lane = 0, pos = 0;
 		String message = "";
 		if(vehicle.getModel()<=2014&&!vehicle.getIsNew()){//checks if the vehicle has to be added to the parking lot
@@ -245,9 +245,9 @@ public class Terminal {
 			if (lane>3){// if the difference is higher than 3 years (2012) it means teh car is older than 2012, as such it will go in the last column
 				lane = 4;
 			}
-			pos = parkingLot.FindFirstemptyForLane(lane);
+			pos = parkingLot.findFirstemptyForLane(lane);
 			if (pos>=0){
-				parkingLot.AddCar(lane, pos, vehicle);
+				parkingLot.addCar(lane, pos, vehicle);
 			}
 			else{
 				message = "Lane " + (lane+1) + " out of space";
@@ -267,7 +267,7 @@ public class Terminal {
 	 * Returns a string with all of the vehicle's main data (brand/model/mileage)
 	 * @return brand/model/mileage
 	 */
-	public String DisplayVehicles(){
+	public String displayVehicles(){
 		String message = "";
 
 		for (int counter=0; counter<vehicles.size(); counter++){
@@ -283,10 +283,10 @@ public class Terminal {
 	 * @return SalePrice
 	 */
 	public double getSalePrice(int vehicleIndex){
-		return vehicles.get(vehicleIndex-1).SalePrice();
+		return vehicles.get(vehicleIndex-1).salePrice();
 	}
 
-	public String DisplayParkingLot() {
+	public String displayParkingLot() {
 		return parkingLot.toString();
 	}
 
@@ -294,7 +294,7 @@ public class Terminal {
 	 * Returns a string with all of the "toString()" methods of the vehicles that are an instance of Car.
 	 * @return a String with the "Cars".
 	 */
-	public String DisplayCars() {
+	public String displayCars() {
 		String message = "";
 		int realCounter = 0;
 
@@ -311,7 +311,7 @@ public class Terminal {
 	 * Returns a String with all of the "toString()" methods of the vehicles who are an instance of MotorBearer and whose fuel type are STANDARD_GASOLINE
 	 * @return a String with the vehicles whose fuel is STANDARD_GASOLINE
 	 */
-	public String DisplayGasoline() {
+	public String displayGasoline() {
 		String message = "";
 		int realCounter = 0;
 
@@ -329,7 +329,7 @@ public class Terminal {
 	 * Returns a String with all of the "toString()" methods of the vehicles who are an instance of MotorBearer and whose fuel type are PLUS_GASOLINE
 	 * @return a String with the vehicles whose fuel is PLUS_GASOLINE
 	 */
-	public String DisplayExtra() {
+	public String displayExtra() {
 		String message = "";
 		int realCounter = 0;
 
@@ -347,7 +347,7 @@ public class Terminal {
 	 * Returns a string with all of the "toString()" methods of the vehicles that are an instance of Motorcycles.
 	 * @return a String with the "Bikes".
 	 */
-	public String DisplayBikes() {
+	public String displayBikes() {
 		String message = "";
 		int realCounter = 0;
 
@@ -363,7 +363,7 @@ public class Terminal {
 	 * Returns a String with all of the "toString()" methods of the vehicles who are an instance of MotorBearer and whose fuel type are DIESEL
 	 * @return a String with the vehicles whose fuel is DIESEL
 	 */
-	public String DisplayDiesel() {
+	public String displayDiesel() {
 		String message = "";
 		int realCounter = 0;
 
@@ -380,7 +380,7 @@ public class Terminal {
 	 * Returns a String with all of the "toString()" methods of the vehicles who are an instance of BateryBearer
 	 * @return a String with the vehicles whose "fuel" is Electricity
 	 */
-	public String DisplayElectricity() {
+	public String displayElectricity() {
 		String message = "";
 		int realCounter = 0;
 
@@ -397,7 +397,7 @@ public class Terminal {
 	 * Returns a String with all of the New vehicles
 	 * @return A String with the vehicles whose "isNew" atribute is true
 	 */
-	public String DisplayNew() {
+	public String displayNew() {
 		String message = "";
 		int realCounter = 0;	
 		for (int counter=0; counter<vehicles.size(); counter++){
@@ -413,7 +413,7 @@ public class Terminal {
 	 * Returns a String with all of the Used vehicles
 	 * @return A String with the vehicles whose "isNew" atribute is false
 	 */
-	public String DisplayUsed() {
+	public String displayUsed() {
 		String message = "";
 		int realCounter = 0;
 
@@ -448,7 +448,7 @@ public class Terminal {
 	 * @param id
 	 * @return the index of the vehice or -1 if teh vehicle does not exist
 	 */
-	public int FindVehicleIndex(String id){
+	public int findVehicleIndex(String id){
 		for (int counter=0; counter<vehicles.size(); counter++){
 			if (id.equals(vehicles.get(counter).getId())){
 				return counter;
@@ -463,7 +463,7 @@ public class Terminal {
 	 * @return a String containing all of the toString()s of a vehicle
 	 */
 	public String getAllDocumentation(int vehicleIndex){
-		return vehicles.get(vehicleIndex).ShowDocuments();
+		return vehicles.get(vehicleIndex).showDocuments();
 	}
 
 	/**
@@ -471,8 +471,8 @@ public class Terminal {
 	 * @param lane
 	 * @return A String containing all of the information of the vehicles on the given lane
 	 */
-	public String AllToStringLane(int lane){
-		return parkingLot.AllToStringLane(lane);
+	public String allToStringLane(int lane){
+		return parkingLot.allToStringLane(lane);
 	}
 
 	/**
@@ -480,11 +480,11 @@ public class Terminal {
 	 * @return the percentage the parking lot has been ocupied
 	 */
 	public double getOcupationPercentage(){
-		return parkingLot.OcupationPercentage();
+		return parkingLot.ocupationPercentage();
 	}
 
 	public boolean IsEmpty(int lane){
-		return parkingLot.FindFirstemptyForLane(lane)==0;
+		return parkingLot.findFirstemptyForLane(lane)==0;
 	}
 }
 

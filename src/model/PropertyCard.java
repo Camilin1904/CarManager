@@ -17,7 +17,7 @@ public class PropertyCard extends Document {
      * Decodes the image by only picking the values on the cells that the sum of x and y are a pair number and not 0, going from top to bottom, from right to left
      */
     @Override
-    public String DecodeImage() {
+    public String decodeImage() {
         String sImage = "";
         for (int counter=1; counter<=IMAGE_SIZE; counter++){
             for (int counter2=1; counter2<=IMAGE_SIZE; counter2++){
